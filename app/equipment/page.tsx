@@ -16,19 +16,16 @@ const EquipmentPage = async ({ params, searchParams }: {
   const { ids } = searchParams
   console.log("🚀 ~ ids:", ids)
 
-  if (ids === undefined) return null
+  if (ids === undefined || !Array.isArray(ids) || ids.length < 1) return null
 
   const fileCharacters = await fs.readFile(path.resolve() + '/data/characters.json', 'utf8');
   const datasCharacters: CharacterDatas = JSON.parse(fileCharacters);
-  console.log("🚀 ~ datasCharacters:", datasCharacters)
 
   const relicsFile = await fs.readFile(path.resolve() + '/data/relics.json', 'utf8');
   const relicsDatas: RelicsDatas = JSON.parse(relicsFile);
-  console.log("🚀 ~ relicsDatas:", relicsDatas)
 
   const lightconeFile = await fs.readFile(path.resolve() + '/data/lightcones.json', 'utf8');
   const lightconeDatas: LightconeDatas = JSON.parse(lightconeFile);
-  console.log("🚀 ~ lightconeDatas:", lightconeDatas)
 
   const charObjs = ids.map(id => datasCharacters.find(_data => _data.id.toString() === id)) as unknown as typeof datasCharacters
 
