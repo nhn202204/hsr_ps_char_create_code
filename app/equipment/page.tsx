@@ -20,7 +20,7 @@ const EquipmentPage = async ({ params, searchParams }: {
   if (ids === undefined ) return null
 
   if (typeof(ids) === "string") {
-    ids = ids.split(",")
+    ids = ids.split(", ")
   }
 
   console.log("🚀 ~ ids 2:", ids)
@@ -37,9 +37,10 @@ const EquipmentPage = async ({ params, searchParams }: {
   const lightconeDatas: LightconeDatas = JSON.parse(lightconeFile);
 
   const charObjs = ids.map(id => datasCharacters.find(_data => _data.id.toString() === id)) as unknown as typeof datasCharacters
+  console.log("🚀 ~ charObjs:", charObjs)
 
   return (
-    <div className=" grid grid-cols-1 gap-1">
+    <div className="grid grid-cols-1 gap-1">
       {charObjs.map((charObj) =>
         <div key={charObj.id} className="grid grid-cols-1  sm:grid-cols-2 sm:gap-1 md:gap-2 font-medium text-xs">
           <div className="relative overflow-hidden">
