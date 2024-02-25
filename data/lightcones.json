@@ -1,0 +1,106 @@
+[
+ {
+  "id": 23024,
+  "name": "Along the Passing Shore",
+  "ten": "Dọc Theo Bến Bờ Thời Gian",
+  "path": "The Nihility",
+  "van menh": "Hư Vô",
+  "note": "Trấn Acheron"
+ },
+ {
+  "id": 21015,
+  "name": "Resolution Shines As Pearls of Sweat",
+  "ten": "Sự Quyết Tâm Như Giọt Mồ Hôi Lấp Lánh",
+  "path": "The Nihility",
+  "van menh": "Hư Vô",
+  "note": "Đánh hạ, Mồ hôi, nón hình luka"
+ },
+ {
+  "id": 23007,
+  "name": "Incessant Rain",
+  "ten": "Cơn Mưa Tầm Tã",
+  "path": "The Nihility",
+  "van menh": "Hư Vô",
+  "note": "Trấn Sói"
+ },
+ {
+  "id": 23023,
+  "name": "Inherently Unjust Destiny",
+  "ten": "Vận Mệnh Chưa Từng Công Bằng",
+  "path": "The Preservation",
+  "van menh": "Bảo Hộ",
+  "note": "Trấn Aventurine"
+ },
+ {
+  "id": 23011,
+  "name": "She Already Shut Her Eyes",
+  "ten": "Đôi Mắt Đã Nhắm Lại",
+  "path": "The Preservation",
+  "van menh": "Bảo Hộ",
+  "note": "Trấn Fuxuan"
+ },
+ {
+  "id": 21016,
+  "name": "Trend of the Universal Market",
+  "ten": "Xu Hướng Thị Trường Vũ Trụ",
+  "path": "The Preservation",
+  "van menh": "Bảo Hộ",
+  "note": "Xu hướng, nón hình topaz"
+ },
+ {
+  "id": 22000,
+  "name": "Before the Tutorial Mission Starts",
+  "ten": "Trước Khi Bắt Đầu Nhiệm Vụ Tân Thủ",
+  "path": "The Nihility",
+  "van menh": "Hư Vô",
+  "note": "Tân thủ"
+ },
+ {
+  "id": 23019,
+  "name": "Past Self in Mirror",
+  "ten": "Tôi Trong Gương Ngày Ấy",
+  "path": "The Harmony",
+  "van menh": "Hòa Hợp",
+  "note": "Trấn Mei"
+ },
+ {
+  "id": 23021,
+  "name": "Earthly Escapade",
+  "ten": "Trò Đùa Trần Thế",
+  "path": "The Harmony",
+  "van menh": "Hòa Hợp",
+  "note": "Trấn Sparkle"
+ },
+ {
+  "id": 23006,
+  "name": "Patience Is All You Need",
+  "ten": "Chỉ Cần Chờ Đợi",
+  "path": "The Nihility",
+  "van menh": "Hư Vô",
+  "note": "Trấn Kafka"
+ },
+ {
+  "id": 23022,
+  "name": "Reforged Remembrace",
+  "ten": "Hun Đúc Ký Ức Thời Gian",
+  "path": "The Nihility",
+  "van menh": "Hư Vô",
+  "note": "Trấn Black Swan"
+ },
+ {
+  "id": 24000,
+  "name": "On the Fall of an Aeon",
+  "ten": "Sự Sụp Đổ Của Aeon",
+  "path": "The Destruction",
+  "van menh": "Hủy Diệt",
+  "note": "Aeon"
+ },
+ {
+  "id": 21021,
+  "name": "Quid Pro Quo",
+  "ten": "Đổi Ngang Giá",
+  "path": "The Abundance",
+  "van menh": "Trù Phú",
+  "note": "Đổi Ngang Giá"
+ }
+]
