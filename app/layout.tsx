@@ -16,8 +16,9 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={inter.className + " container mx-auto"}>
-          {children}
+      <body className={inter.className + " container mx-auto relative"}>
+        <div className="fixed bottom-1 left-1 z-50 text-[5pt] text-gray-600">{`20240225.2352`}</div>
+        {children}
       </body>
     </html>
   );

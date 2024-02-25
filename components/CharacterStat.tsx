@@ -92,7 +92,7 @@ const CharacterStat: React.FC<Props> = ({ charObj, lightconeDatas, relicsDatas }
 
   const lightconeList = lightconeDatas.filter(lc => lc.path.includes(charObj.path))
 
-  const [lightcone, setLightcone] = useState<LightconeData>(() => lightconeList.find(_lc => _lc.ten.includes(charObj.lc)) || lightconeList[0])
+  const [lightcone, setLightcone] = useState<LightconeData>(() => lightconeList.find(_lc => _lc.note.includes(charObj.lc)) || lightconeList[0])
 
   const handleLCClick: MouseEventHandler<HTMLButtonElement> = (e) => {
     e.preventDefault()
