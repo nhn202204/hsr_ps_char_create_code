@@ -14,11 +14,7 @@ const CharacterSelector: React.FC<{ data: { id: number, name: string }[] }> = ({
 
   const isClient = useIsClient()
 
-  useEffect(() => {
-    console.log("🚀 ~ charListSelected:", charListSelected)
-  }, [charListSelected])
-
-  if (!isClient) return <p>Loading...</p>
+  if (!isClient) return <div className="w-full flex justify-center">Loading...</div>
 
   const onCharacterSelect: ChangeEventHandler<HTMLInputElement> = (e) => {
     const { id, checked } = e.target

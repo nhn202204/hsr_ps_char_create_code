@@ -14,8 +14,6 @@ const EquipmentPage = async ({ params, searchParams }: {
 }) => {
 
   let { ids } = searchParams
-  console.log("🚀 ~ ids 1:", ids)
-  console.log("🚀 ~ typeof ids:", typeof(ids))
 
   if (ids === undefined ) return null
 
@@ -23,9 +21,9 @@ const EquipmentPage = async ({ params, searchParams }: {
     ids = ids.split(", ")
   }
 
-  console.log("🚀 ~ ids 2:", ids)
+  if (!Array.isArray(ids)) return null
 
-  if (!Array.isArray(ids) || ids.length < 1) return null
+  if (ids.length < 1) return (<h1 className="w-full flex justify-center">Bạn chưa chọn Char / Char not picked yet</h1>)
 
   const fileCharacters = await fs.readFile(path.resolve() + '/data/characters.json', 'utf8');
   const datasCharacters: CharacterDatas = JSON.parse(fileCharacters);
@@ -37,7 +35,6 @@ const EquipmentPage = async ({ params, searchParams }: {
   const lightconeDatas: LightconeDatas = JSON.parse(lightconeFile);
 
   const charObjs = ids.map(id => datasCharacters.find(_data => _data.id.toString() === id)) as unknown as typeof datasCharacters
-  console.log("🚀 ~ charObjs:", charObjs)
 
   return (
     <div className="grid grid-cols-1 gap-1">
