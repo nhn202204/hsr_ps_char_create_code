@@ -10,13 +10,22 @@ import ColorTag from "@/components/ColorTag";
 import path from 'path';
 
 const EquipmentPage = async ({ params, searchParams }: {
-  params: { slug: string }, searchParams: { ids: string[] | undefined }
+  params: { slug: string }, searchParams: { ids: string | string[] | undefined }
 }) => {
 
-  const { ids } = searchParams
-  console.log("🚀 ~ ids:", ids)
+  let { ids } = searchParams
+  console.log("🚀 ~ ids 1:", ids)
+  console.log("🚀 ~ typeof ids:", typeof(ids))
 
-  if (ids === undefined || !Array.isArray(ids) || ids.length < 1) return null
+  if (ids === undefined ) return null
+
+  if (typeof(ids) === "string") {
+    ids = ids.split(",")
+  }
+
+  console.log("🚀 ~ ids 2:", ids)
+
+  if (!Array.isArray(ids) || ids.length < 1) return null
 
   const fileCharacters = await fs.readFile(path.resolve() + '/data/characters.json', 'utf8');
   const datasCharacters: CharacterDatas = JSON.parse(fileCharacters);
