@@ -1,0 +1,32 @@
+{
+  "IndexPage": {
+    "title": "next-intl example",
+    "desc_1": "Hello, this page was made in a hurry to test so it has not been refined yet, will gradually add more, please be understanding!.",
+    "desc_2": "All HP ATK DEF is % not flat at all.",
+    "desc_3": "I currently do not have time to input the Base char and Lightcone stats data, will gradually add this section!.",
+    "desc_4": "All data will be saved on your machine, may be lost due to your activities and I do not save the data anywhere else!.",
+    "desc_5": "Let's start below! Enjoy",
+    "Btn_to_pick_char": "To Characters picker page"
+  },
+  "NotFoundPage": {
+    "title": "Page Not Found",
+    "description": "Oops! It seems like you've stumbled upon a page that doesn't exist. Don't worry, our internationalization magic is still hard at work on other parts of the app. Feel free to navigate back to explore more!"
+  },
+  "Navigation": {
+    "home": "Home"
+  },
+  "Footer": {
+    "copyright": "© 2024 Your App. All rights reserved."
+  },
+  "Error": {
+    "title": "Something went wrong!",
+    "description": "<p>We've unfortunately encountered an error.</p><p>You can try to <retry>reload the page</retry> you were visiting.</p>"
+  },
+  "LocaleSwitcher": {
+    "label": "Change language",
+    "locale": "{locale, select, vn {Tiếng Việt} en {English} other {Unknown}}"
+  },
+  "EquipmentPage": {
+    "Btn-total-step": "Total step"
+  }
+}

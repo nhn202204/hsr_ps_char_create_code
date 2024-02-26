@@ -1,5 +1,6 @@
 
 // import Image from "next/image"
+// import { getLocale } from "next-intl/server"
 
 import { promises as fs } from 'fs';
 
@@ -15,9 +16,9 @@ const EquipmentPage = async ({ params, searchParams }: {
 
   let { ids } = searchParams
 
-  if (ids === undefined ) return null
+  if (ids === undefined) return null
 
-  if (typeof(ids) === "string") {
+  if (typeof (ids) === "string") {
     ids = ids.split(", ")
   }
 
@@ -41,12 +42,12 @@ const EquipmentPage = async ({ params, searchParams }: {
       {charObjs.map((charObj) =>
         <div key={charObj.id} className="grid grid-cols-1 sm:grid-cols-2 sm:gap-1 md:gap-2 font-medium text-xs">
           <div className="relative overflow-hidden">
-            <ColorTag label={charObj.name + " - id " + charObj.id} className="absolute bottom-4 left-4"/>
+            <ColorTag label={charObj.name + " - id " + charObj.id} className="absolute bottom-4 left-4" />
             <ClippedImage src={`/characters/${charObj.id}.webp`} alt={charObj.name + " image"}
               {...{ top: charObj.top, left: charObj.left, scale: charObj.scale }} />
           </div>
 
-          <CharacterStat {...{charObj, relicsDatas, lightconeDatas}} />
+          <CharacterStat {...{ charObj, relicsDatas, lightconeDatas }} />
         </div>
       )}
     </div>

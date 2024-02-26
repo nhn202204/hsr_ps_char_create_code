@@ -1,0 +1,32 @@
+{
+  "IndexPage": {
+    "title": "next-intl example",
+    "desc_1": "Hello, page làm vội để test nên chưa chăm chút được, sẽ từ từ bổ sung, mong mọi người thông cảm!",
+    "desc_2": "Tất cả chỉ số HP ATK DEF đều là %",
+    "desc_3": "Hiện mình chưa có thời gian nhập liệu các chỉ số Base char, nón. Sẽ từ từ bổ sung phần này.",
+    "desc_4": "Tất cả dữ liệu sẽ lưu trên máy của bạn, có thể sẽ mất do các hoạt động của bạn và dữ liệu mình không lưu ở đâu khác.",
+    "desc_5": "Bắt đầu bên dưới nhé! Enjoy",
+    "Btn_to_pick_char": "Tới trang chọn nhân vật"
+  },
+  "NotFoundPage": {
+    "title": "Page Not Found",
+    "description": "Oops! It seems like you've stumbled upon a page that doesn't exist. Don't worry, our internationalization magic is still hard at work on other parts of the app. Feel free to navigate back to explore more!"
+  },
+  "Navigation": {
+    "home": "Home"
+  },
+  "Footer": {
+    "copyright": "© 2024 Your App. All rights reserved."
+  },
+  "Error": {
+    "title": "Something went wrong!",
+    "description": "<p>We've unfortunately encountered an error.</p><p>You can try to <retry>reload the page</retry> you were visiting.</p>"
+  },
+  "LocaleSwitcher": {
+    "label": "Ngôn ngữ",
+    "locale": "{locale, select, vn {Tiếng Việt} en {English} other {Unknown}}"
+  },
+  "EquipmentPage": {
+    "Btn-total-step": "Tổng điểm"
+  }
+}

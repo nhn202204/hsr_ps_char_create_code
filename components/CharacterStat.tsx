@@ -12,6 +12,8 @@ import { useIsClient } from 'usehooks-ts'
 import InputNumberWithStepHandler, { ChangedFunc, StepFunc } from "./InputNumberWithStepHandler"
 
 import { Dropdown } from "flowbite-react"
+import { useTranslations } from 'next-intl'
+import { useLocale } from "next-intl";
 
 const initialStatObj: StatObj = {
   ATK: 0,
@@ -44,6 +46,10 @@ interface Props {
 }
 
 const CharacterStat: React.FC<Props> = ({ charObj, lightconeDatas, relicsDatas }) => {
+
+  const locale = useLocale()
+
+  const t = useTranslations('EquipmentPage');
 
   const [persitSteps, setPersitSteps] = useLocalStorage<StatObj>(`${charObj.id}-steps`, initialStatObj)
 
@@ -114,25 +120,21 @@ const CharacterStat: React.FC<Props> = ({ charObj, lightconeDatas, relicsDatas }
 
   const relicSet4List = relicsDatas.filter(rl => rl.set === 4)
 
-  const relicSet4SetList = relicSet4List.map(rl => rl["ten set"]).filter((value, index, self) => self.indexOf(value) === index)
+  const relicSet4SetList = relicSet4List.filter((value, index, self) => self.findIndex(vl => vl.code === value.code) === index)
 
-  const relicSet2SetList = relicSet2List.map(rl => rl["ten set"]).filter((value, index, self) => self.indexOf(value) === index)
+  const relicSet2SetList = relicSet2List.filter((value, index, self) => self.findIndex(vl => vl.code === value.code) === index)
 
   const [relicSet4HeadArm, setRelicSet4HeadArm] = useState<RelicsData>(() => relicSet4List.find(_rl => _rl["ten set"].includes(charObj.set_4_top)) || relicSet4List[0])
 
   const handlePickRelicSet4HeadArmList: PointerEventHandler<HTMLButtonElement> = (e) => {
-    e.preventDefault()
-    e.stopPropagation()
-    const newRL4 = relicSet4List.find(_rl => _rl["ten set"] === e.currentTarget.id)
+    const newRL4 = relicSet4List.find(_rl => _rl.id.toString() === e.currentTarget.id)
     newRL4 && setRelicSet4HeadArm(newRL4)
   }
 
   const [relicSet4BodyFoot, setRelicSet4BodyFoot] = useState<RelicsData>(() => relicSet4List.find(_rl => _rl["ten set"].includes(charObj.set_4_bot)) || relicSet4List[0])
 
   const handlePickRelicSet4BodyFootList: PointerEventHandler<HTMLButtonElement> = (e) => {
-    e.preventDefault()
-    e.stopPropagation()
-    const newRL4 = relicSet4List.find(_rl => _rl["ten set"] === e.currentTarget.id)
+    const newRL4 = relicSet4List.find(_rl => _rl.id.toString() === e.currentTarget.id)
     newRL4 && setRelicSet4BodyFoot(newRL4)
   }
 
@@ -153,9 +155,7 @@ const CharacterStat: React.FC<Props> = ({ charObj, lightconeDatas, relicsDatas }
   const [relicSet2, setRelicSet2] = useState<RelicsData>(() => relicSet2List.find(_rl => _rl["ten set"].includes(charObj.set_2)) || relicSet2List[0])
 
   const handlePickRelicSet2List: PointerEventHandler<HTMLButtonElement> = (e) => {
-    e.preventDefault()
-    e.stopPropagation()
-    const newRL2 = relicSet2List.find(_rl => _rl["ten set"] === e.currentTarget.id)
+    const newRL2 = relicSet2List.find(_rl => _rl.id.toString() === e.currentTarget.id)
     newRL2 && setRelicSet2(newRL2)
   }
 
@@ -252,7 +252,7 @@ const CharacterStat: React.FC<Props> = ({ charObj, lightconeDatas, relicsDatas }
         </>
       }
 
-      <ColorTag label={`Total Step: ${totalStep}/36`} className="bg-opacity-100" />
+      <ColorTag label={`${t('Btn-total-step')}: ${totalStep}/36`} className="bg-opacity-100" />
 
       {edit ?
         <>
@@ -277,7 +277,9 @@ const CharacterStat: React.FC<Props> = ({ charObj, lightconeDatas, relicsDatas }
                     focus:ring-blue-300 font-medium rounded-full text-sm p-2.5 text-center inline-flex items-center
                     dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
           <svg className="w-4 h-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="#FFFFFF">
-            <path strokeLinecap="round" strokeLinejoin="round" d="M19 20H5a1 1 0 0 0 0 2h14a1 1 0 0 0 0-2zM5 18h.09l4.17-.38a2 2 0 0 0 1.21-.57l9-9a1.92 1.92 0 0 0-.07-2.71L16.66 2.6A2 2 0 0 0 14 2.53l-9 9a2 2 0 0 0-.57 1.21L4 16.91a1 1 0 0 0 .29.8A1 1 0 0 0 5 18zM15.27 4 18 6.73l-2 1.95L13.32 6zm-8.9 8.91L12 7.32l2.7 2.7-5.6 5.6-3 .28z" />
+            <path strokeLinecap="round" strokeLinejoin="round" d="M19 20H5a1 1 0 0 0 0 2h14a1 1 0 0 0 0-2zM5 18h.09l4.17-.38a2 2 0 0 0 1.21-.57l9-9a1.92 1.92 0 
+                                      0 0-.07-2.71L16.66 2.6A2 2 0 0 0 14 2.53l-9 9a2 2 0 0 0-.57 1.21L4 16.91a1 1 0 0 0 .29.8A1 1 0 0 0 5 18zM15.27 4 18 6.73l-2 
+                                      1.95L13.32 6zm-8.9 8.91L12 7.32l2.7 2.7-5.6 5.6-3 .28z" />
           </svg>
         </button>
       }
@@ -295,7 +297,8 @@ const CharacterStat: React.FC<Props> = ({ charObj, lightconeDatas, relicsDatas }
         <button type="button" id="RelicSet4HeadArm" className={`flex flex-col items-stretch items-center hover:none hover:outline-none focus:none focus:outline-none${openRelicSet4HeadArmList ? " ring-4 ring-blue-600" : ""}`}
           onClick={handleRelicClick}
         >
-          <Image src={`/relics/${relicSet4HeadArm.code}.webp`} alt={`Relic ${relicSet4HeadArm["ten set"]}`} width="70" height="70" style={{ width: 'auto', height: 'auto' }} />
+          <Image src={`/relics/${relicSet4HeadArm.code}.webp`} alt={`Relic ${relicSet4HeadArm["ten set"]}`} width="70" height="70"
+            style={{ width: 'auto', height: 'auto' }} />
           {`Đầu + Tay / Head + Arm`}
         </button>
 
@@ -317,22 +320,37 @@ const CharacterStat: React.FC<Props> = ({ charObj, lightconeDatas, relicsDatas }
 
       {openLCList &&
         <div className="w-full col-span-2" is="Lightcone">
-          <Dropdown label={"LC: " + lightcone.ten} theme={{ floating: { target: "w-full" } }}>
-            {lightconeList.map(lc => (
-              <Dropdown.Item key={lc.id} id={lc.id.toString()} onPointerDown={handlePickLC}>
-                {lc.ten}
-              </Dropdown.Item>
-            ))}
+          <Dropdown
+            className="h-[20rem] overflow-auto"
+            label={"LC: " + lightcone[`${locale === "vn" ? "ten" : "name"}`]}
+            theme={{ floating: { target: "w-full" } }}
+          >
+            <div className="w-full h-28" >
+              {lightconeList.map(lc => (
+                <Dropdown.Item className="pl-2 pb-0 pt-1" key={lc.id} id={lc.id.toString()} onPointerDown={handlePickLC}>
+                  <Image src={`/lightcones/${lc.id}.webp`} alt={`LC ${locale === "vn" ? lc.ten : lc.name}`} width="30" height="30"
+                    style={{ width: 'auto', height: 'auto' }}
+                  />
+                  <span className="pl-2">{locale === "vn" ? lc.ten : lc.name}</span>
+                </Dropdown.Item>
+              ))}
+            </div>
           </Dropdown>
         </div>
       }
 
       {openRelicSet4HeadArmList &&
         <div className="w-full col-span-2" is={`Set4Top`}>
-          <Dropdown label={"Top: " + relicSet4HeadArm["ten set"]} theme={{ floating: { target: "w-full" } }}>
+          <Dropdown
+            className="h-[20rem] overflow-auto"
+            label={"Top: " + relicSet4HeadArm[`${locale === "vn" ? "ten set" : "set name"}`]}
+            theme={{ floating: { target: "w-full" } }}
+          >
             {relicSet4SetList.map(rl => (
-              <Dropdown.Item key={rl} id={rl} onPointerDown={handlePickRelicSet4HeadArmList}>
-                {rl}
+              <Dropdown.Item className="pl-2 py-0" key={rl.id} id={rl.id.toString()} onPointerDown={handlePickRelicSet4HeadArmList}>
+                <Image src={`/relics/${rl.code}.webp`} alt={`Relic ${rl["ten set"]}`} width="30" height="30"
+                  style={{ width: 'auto', height: 'auto' }} />
+                <span className="pl-2">{locale === "vn" ? rl["ten set"] : rl["set name"]}</span>
               </Dropdown.Item>
             ))}
           </Dropdown>
@@ -342,10 +360,16 @@ const CharacterStat: React.FC<Props> = ({ charObj, lightconeDatas, relicsDatas }
       {openRelicSet2List &&
         <>
           <div className="w-full col-span-2" id={`Set2`}>
-            <Dropdown label={"Mid: " + relicSet2["ten set"]} theme={{ floating: { target: "w-full" } }}>
+            <Dropdown
+              className="h-[20rem] overflow-auto"
+              label={"Mid: " + relicSet2[`${locale === "vn" ? "ten set" : "set name"}`]}
+              theme={{ floating: { target: "w-full" } }}
+            >
               {relicSet2SetList.map(rl => (
-                <Dropdown.Item key={rl} id={rl} onPointerDown={handlePickRelicSet2List}>
-                  {rl}
+                <Dropdown.Item className="pl-2 py-0" key={rl.id} id={rl.id.toString()} onPointerDown={handlePickRelicSet2List}>
+                  <Image src={`/relics/${rl.code}.webp`} alt={`Relic ${rl["ten set"]}`} width="30" height="30"
+                    style={{ width: 'auto', height: 'auto' }} />
+                  <span className="pl-2">{locale === "vn" ? rl["ten set"] : rl["set name"]}</span>
                 </Dropdown.Item>
               ))}
             </Dropdown>
@@ -374,10 +398,16 @@ const CharacterStat: React.FC<Props> = ({ charObj, lightconeDatas, relicsDatas }
       {openRelicSet4BodyFootList &&
         <>
           <div className="w-full col-span-2" id={`Set4Bot`}>
-            <Dropdown label={"Bot: " + relicSet4BodyFoot["ten set"]} theme={{ floating: { target: "w-full" } }}>
+            <Dropdown
+              className="h-[20rem] overflow-auto"
+              label={"Bot: " + relicSet4BodyFoot[`${locale === "vn" ? "ten set" : "set name"}`]}
+              theme={{ floating: { target: "w-full" } }}
+            >
               {relicSet4SetList.map(rl => (
-                <Dropdown.Item key={rl} id={rl} onPointerDown={handlePickRelicSet4BodyFootList}>
-                  {rl}
+                <Dropdown.Item className="pl-2 py-0" key={rl.id} id={rl.id.toString()} onPointerDown={handlePickRelicSet4BodyFootList}>
+                  <Image src={`/relics/${rl.code}.webp`} alt={`Relic ${rl["ten set"]}`} width="30" height="30"
+                    style={{ width: 'auto', height: 'auto' }} />
+                  <span className="pl-2">{locale === "vn" ? rl["ten set"] : rl["set name"]}</span>
                 </Dropdown.Item>
               ))}
             </Dropdown>

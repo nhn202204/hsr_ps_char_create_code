@@ -29,7 +29,7 @@ const CharacterSelector: React.FC<{ data: { id: number, name: string }[] }> = ({
   }
 
   return (
-    <div className="flex flex-col w-full relative px-2 pb-4">
+    <div className="flex flex-col w-full relative px-2 pb-4 pt-5">
       <p className="flex w-full justify-center">Select your characters</p>
       <div className="relative grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-1 sm:gap-2 lg:gap-3">
         {data.map(({ id, name }) =>
