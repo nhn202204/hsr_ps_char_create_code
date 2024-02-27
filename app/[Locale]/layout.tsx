@@ -26,12 +26,12 @@ export default function RootLayout({
   const messages = useMessages();
   return (
     <html lang={locale}>
-      <body className={inter.className + " container mx-auto relative pb-9"}>
+      <body className={inter.className + " container mx-auto relative"}>
         <NextIntlClientProvider messages={messages}>
           <JotaiProvider>
             <div className="fixed top-1 left-1 z-50 text-[6pt] text-gray-600 flex flex-col">
               <LocaleSwitcher />
-              {`20240227.0021`}
+              {`20240227.2327`}
             </div>
             {children}
           </JotaiProvider>

@@ -27,6 +27,16 @@
     "locale": "{locale, select, vn {Tiếng Việt} en {English} other {Unknown}}"
   },
   "EquipmentPage": {
-    "Btn-total-step": "Tổng điểm"
+    "Btn-total-step": "Tổng điểm",
+    "Btn-affix-sphere": "Cầu",
+    "Btn-affix-rope": "Dây",
+    "description_top": "Top: Đầu + Tay",
+    "description_mid": "Mid: Cầu + Dây",
+    "description_bot": "Bot: Áo + Giày"
+  },
+  "StickyButton": {
+    "main-page": "Đến trang chọn nhân vật",
+    "character-page": "Đến trang +stat, di vật, nón",
+    "equipment-page": "Đến trang tạo code"
   }
 }

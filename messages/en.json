@@ -27,6 +27,16 @@
     "locale": "{locale, select, vn {Tiếng Việt} en {English} other {Unknown}}"
   },
   "EquipmentPage": {
-    "Btn-total-step": "Total step"
+    "Btn-total-step": "Total step",
+    "Btn-affix-sphere": "Sphere",
+    "Btn-affix-rope": "Rope",
+    "description_top": "Top: Head + Arm",
+    "description_mid": "Mid: Sphere + Rope",
+    "description_bot": "Bot: Body + Foot"
+  },
+  "StickyButton": {
+    "main-page": "To Character select page",
+    "character-page": "To stat, relic, lc page",
+    "equipment-page": "To compose code page"
   }
 }

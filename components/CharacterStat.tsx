@@ -30,16 +30,18 @@ const initialStatObj: StatObj = {
 }
 
 const initialMainAffixPicked: {
-  Body: { affix: ValidMainAffix, bonus: number },
-  Foot: { affix: ValidMainAffix, bonus: number },
-  Sphere: { affix: ValidMainAffix, bonus: number },
-  Rope: { affix: ValidMainAffix, bonus: number }
+  Body: { affix: ValidMainAffix, bonus: number, affixId: number },
+  Foot: { affix: ValidMainAffix, bonus: number, affixId: number },
+  Sphere: { affix: ValidMainAffix, bonus: number, affixId: number },
+  Rope: { affix: ValidMainAffix, bonus: number, affixId: number }
 } = {
-  Body: { affix: "ATK", bonus: RELIC_MAIN_AFFIX_BONUS.ATK },
-  Foot: { affix: "SPD", bonus: RELIC_MAIN_AFFIX_BONUS.SPD },
-  Sphere: { affix: "ATK", bonus: RELIC_MAIN_AFFIX_BONUS.ATK },
-  Rope: { affix: "ATK", bonus: RELIC_MAIN_AFFIX_BONUS.ATK }
+  Body: { affix: "ATK", bonus: RELIC_MAIN_AFFIX_BONUS.ATK, affixId: RELIC_MAIN_AFFIX_ID["Body"][1].id },
+  Foot: { affix: "SPD", bonus: RELIC_MAIN_AFFIX_BONUS.SPD, affixId: RELIC_MAIN_AFFIX_ID["Foot"][3].id },
+  Sphere: { affix: "ATK", bonus: RELIC_MAIN_AFFIX_BONUS.ATK, affixId: RELIC_MAIN_AFFIX_ID["Sphere"][1].id },
+  Rope: { affix: "ATK", bonus: RELIC_MAIN_AFFIX_BONUS.ATK, affixId: RELIC_MAIN_AFFIX_ID["Rope"][3].id }
 }
+
+export type MainAffixPicked = typeof initialMainAffixPicked
 
 interface Props {
   charObj: CharacterData, relicsDatas: RelicsDatas, lightconeDatas: LightconeDatas
@@ -124,14 +126,16 @@ const CharacterStat: React.FC<Props> = ({ charObj, lightconeDatas, relicsDatas }
 
   const relicSet2SetList = relicSet2List.filter((value, index, self) => self.findIndex(vl => vl.code === value.code) === index)
 
-  const [relicSet4HeadArm, setRelicSet4HeadArm] = useState<RelicsData>(() => relicSet4List.find(_rl => _rl["ten set"].includes(charObj.set_4_top)) || relicSet4List[0])
+  const [relicSet4HeadArm, setRelicSet4HeadArm] = useLocalStorage<RelicsData>(`${charObj.id}-relic-top`,
+    () => relicSet4List.find(_rl => _rl["ten set"].includes(charObj.set_4_top)) || relicSet4List[0], { initializeWithValue: true })
 
   const handlePickRelicSet4HeadArmList: PointerEventHandler<HTMLButtonElement> = (e) => {
     const newRL4 = relicSet4List.find(_rl => _rl.id.toString() === e.currentTarget.id)
     newRL4 && setRelicSet4HeadArm(newRL4)
   }
 
-  const [relicSet4BodyFoot, setRelicSet4BodyFoot] = useState<RelicsData>(() => relicSet4List.find(_rl => _rl["ten set"].includes(charObj.set_4_bot)) || relicSet4List[0])
+  const [relicSet4BodyFoot, setRelicSet4BodyFoot] = useLocalStorage<RelicsData>(`${charObj.id}-relic-bot`,
+    () => relicSet4List.find(_rl => _rl["ten set"].includes(charObj.set_4_bot)) || relicSet4List[0], { initializeWithValue: true })
 
   const handlePickRelicSet4BodyFootList: PointerEventHandler<HTMLButtonElement> = (e) => {
     const newRL4 = relicSet4List.find(_rl => _rl.id.toString() === e.currentTarget.id)
@@ -140,19 +144,17 @@ const CharacterStat: React.FC<Props> = ({ charObj, lightconeDatas, relicsDatas }
 
   const [mainAffixPickedBonus, setMainAffixPickedBonus] = useState(initialStatObj)
 
-  const [mainAffixPicked, setMainAffixPicked] = useState(initialMainAffixPicked)
-
-  const [persitMainAffixPicked, setPersitMainAffixPicked] = useLocalStorage(`${charObj.id}-main-affix-picked`, initialMainAffixPicked)
+  const [mainAffixPicked, setMainAffixPicked] = useLocalStorage(`${charObj.id}-main-affix`, initialMainAffixPicked, { initializeWithValue: true })
 
   const handlePickMainAffix: PointerEventHandler<HTMLButtonElement> = (e) => {
-    e.preventDefault()
-    e.stopPropagation()
     const [relic, affix] = e.currentTarget.id.split("-") as [keyof typeof mainAffixPicked, ValidMainAffix]
     const bonus = RELIC_MAIN_AFFIX_BONUS[affix]
-    setMainAffixPicked(oldAffix => ({ ...oldAffix, ...{ [relic]: { affix, bonus } } }))
+    const affixId = RELIC_MAIN_AFFIX_ID[relic].find(ele => ele.affix === affix)?.id
+    setMainAffixPicked(oldAffix => ({ ...oldAffix, ...{ [relic]: { affix, bonus, affixId } } }))
   }
 
-  const [relicSet2, setRelicSet2] = useState<RelicsData>(() => relicSet2List.find(_rl => _rl["ten set"].includes(charObj.set_2)) || relicSet2List[0])
+  const [relicSet2, setRelicSet2] = useLocalStorage<RelicsData>(`${charObj.id}-relic-mid`,
+    () => relicSet2List.find(_rl => _rl["ten set"].includes(charObj.set_2)) || relicSet2List[0], { initializeWithValue: true })
 
   const handlePickRelicSet2List: PointerEventHandler<HTMLButtonElement> = (e) => {
     const newRL2 = relicSet2List.find(_rl => _rl.id.toString() === e.currentTarget.id)
@@ -197,13 +199,16 @@ const CharacterStat: React.FC<Props> = ({ charObj, lightconeDatas, relicsDatas }
       "ELE DMG": 0,
     })
     setMainAffixPickedBonus(newAffixPickedBonus)
-    setPersitMainAffixPicked(mainAffixPicked)
   }, [mainAffixPicked])
 
   useEffect(() => {
     setSteps(persitSteps)
     setStatBonus(persitStatBonus)
-    setMainAffixPicked(persitMainAffixPicked)
+    setPersitSteps(persitSteps)
+    setRelicSet4HeadArm(relicSet4HeadArm)
+    setRelicSet4BodyFoot(relicSet4BodyFoot)
+    setRelicSet2(relicSet2)
+    setMainAffixPicked(mainAffixPicked)
   }, [])
 
   useEffect(() => {
@@ -294,26 +299,26 @@ const CharacterStat: React.FC<Props> = ({ charObj, lightconeDatas, relicsDatas }
           />
         </button>
 
-        <button type="button" id="RelicSet4HeadArm" className={`flex flex-col items-stretch items-center hover:none hover:outline-none focus:none focus:outline-none${openRelicSet4HeadArmList ? " ring-4 ring-blue-600" : ""}`}
+        <button type="button" id="RelicSet4HeadArm" className={`relative flex flex-col items-stretch items-center hover:none hover:outline-none focus:none focus:outline-none${openRelicSet4HeadArmList ? " ring-4 ring-blue-600" : ""}`}
           onClick={handleRelicClick}
         >
           <Image src={`/relics/${relicSet4HeadArm.code}.webp`} alt={`Relic ${relicSet4HeadArm["ten set"]}`} width="70" height="70"
             style={{ width: 'auto', height: 'auto' }} />
-          {`Đầu + Tay / Head + Arm`}
+          <h1 className="absolute bottom-0 left-0 w-full px-1">{t('description_top')}</h1>
         </button>
 
-        <button type="button" id="RelicSet2" className={`flex flex-col items-stretch items-center hover:none hover:outline-none focus:none focus:outline-none${openRelicSet2List ? " ring-4 ring-blue-600" : ""}`}
+        <button type="button" id="RelicSet2" className={`relative flex flex-col items-stretch items-center hover:none hover:outline-none focus:none focus:outline-none${openRelicSet2List ? " ring-4 ring-blue-600" : ""}`}
           onClick={handleRelicClick}
         >
           <Image src={`/relics/${relicSet2.code}.webp`} alt={`Relic ${relicSet2["ten set"]}`} width="70" height="70" style={{ width: 'auto', height: 'auto' }} />
-          {`Cầu + Dây / Sphere + Rope`}
+          <h1 className="absolute bottom-0 left-0 w-full px-1">{t('description_mid')}</h1>
         </button>
 
-        <button type="button" id="RelicSet4BodyFoot" className={`flex flex-col items-stretch items-center hover:none hover:outline-none focus:none focus:outline-none${openRelicSet4BodyFootList ? " ring-4 ring-blue-600" : ""}`}
+        <button type="button" id="RelicSet4BodyFoot" className={`relative flex flex-col items-stretch items-center hover:none hover:outline-none focus:none focus:outline-none${openRelicSet4BodyFootList ? " ring-4 ring-blue-600" : ""}`}
           onClick={handleRelicClick}
         >
           <Image src={`/relics/${relicSet4BodyFoot.code}.webp`} alt={`Relic ${relicSet4BodyFoot["ten set"]}`} width="70" height="70" style={{ width: 'auto', height: 'auto' }} />
-          {`Áo + Giày / Body + Foot`}
+          <h1 className="absolute bottom-0 left-0 w-full px-1">{t('description_bot')}</h1>
         </button>
 
       </div>
@@ -375,7 +380,7 @@ const CharacterStat: React.FC<Props> = ({ charObj, lightconeDatas, relicsDatas }
             </Dropdown>
           </div>
           <div className="w-full" id={`Sphere`}>
-            <Dropdown label={"Cầu/Sphere: " + mainAffixPicked.Sphere.affix} theme={{ floating: { target: "w-full" } }}>
+            <Dropdown label={`${t('Btn-affix-sphere')}: ${mainAffixPicked.Sphere.affix}`} theme={{ floating: { target: "w-full" } }}>
               {RELIC_MAIN_AFFIX_ID.Sphere.map(affixs => (
                 <Dropdown.Item key={affixs.id} id={"Sphere-" + affixs.affix} onPointerDown={handlePickMainAffix}>
                   {affixs.affix}
@@ -384,7 +389,7 @@ const CharacterStat: React.FC<Props> = ({ charObj, lightconeDatas, relicsDatas }
             </Dropdown>
           </div>
           <div className="w-full" id={`Rope`}>
-            <Dropdown label={"Dây/Rope: " + mainAffixPicked.Rope.affix} theme={{ floating: { target: "w-full" } }}>
+            <Dropdown label={`${t('Btn-affix-rope')}: ${mainAffixPicked.Rope.affix}`} theme={{ floating: { target: "w-full" } }}>
               {RELIC_MAIN_AFFIX_ID.Rope.map(affixs => (
                 <Dropdown.Item key={affixs.id} id={"Rope-" + affixs.affix} onPointerDown={handlePickMainAffix}>
                   {affixs.affix}

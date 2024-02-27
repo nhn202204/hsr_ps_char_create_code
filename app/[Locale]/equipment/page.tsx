@@ -9,6 +9,8 @@ import { CharacterDatas, LightconeDatas, RelicsDatas } from "@/data/type";
 import CharacterStat from "@/components/CharacterStat";
 import ColorTag from "@/components/ColorTag";
 import path from 'path';
+import Link from 'next/link';
+import { useTranslations } from 'next-intl';
 
 const EquipmentPage = async ({ params, searchParams }: {
   params: { slug: string }, searchParams: { ids: string | string[] | undefined }
@@ -35,10 +37,10 @@ const EquipmentPage = async ({ params, searchParams }: {
   const lightconeFile = await fs.readFile(path.resolve() + '/data/lightcones.json', 'utf8');
   const lightconeDatas: LightconeDatas = JSON.parse(lightconeFile);
 
-  const charObjs = ids.map(id => datasCharacters.find(_data => _data.id.toString() === id)) as unknown as typeof datasCharacters
+  const charObjs = datasCharacters.filter(char => ((ids as Array<string>).some(id => id === char.id.toString())))
 
   return (
-    <div className="grid grid-cols-1 gap-1">
+    <div className="relative grid grid-cols-1 gap-1">
       {charObjs.map((charObj) =>
         <div key={charObj.id} className="grid grid-cols-1 sm:grid-cols-2 sm:gap-1 md:gap-2 font-medium text-xs">
           <div className="relative overflow-hidden">
@@ -50,7 +52,23 @@ const EquipmentPage = async ({ params, searchParams }: {
           <CharacterStat {...{ charObj, relicsDatas, lightconeDatas }} />
         </div>
       )}
+
+      <StickyButton ids={ids} />
     </div>
+  )
+}
+
+const StickyButton = ({ ids }: { ids: string | string[] | undefined }) => {
+
+  const t = useTranslations('StickyButton');
+
+  return (
+    <Link href={{ pathname: "/code", query: { ids } }}
+      className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg
+           text-sm mx-5 px-5 py-2.5 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800 text-center
+           sticky bottom-4 z-20">
+      {t("equipment-page")}
+    </Link>
   )
 }
 

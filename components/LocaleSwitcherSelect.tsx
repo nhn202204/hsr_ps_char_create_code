@@ -30,7 +30,6 @@ export default function LocaleSwitcherSelect({
 
   function onSelectChange(event: ChangeEvent<HTMLSelectElement>) {
     const nextLocale = event.target.value as Locale
-    console.log("🚀 ~ onSelectChange ~ nextLocale:", nextLocale)
     setCount(nextLocale)
     startTransition(() => {
       router.replace(

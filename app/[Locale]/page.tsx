@@ -2,6 +2,8 @@ import Link from 'next/link'
 import { useTranslations } from 'next-intl'
 
 export default function Page() {
+
+  const tb = useTranslations('StickyButton');
   const t = useTranslations('IndexPage');
 
   return (
@@ -14,7 +16,7 @@ export default function Page() {
       <Link href={"/characters"}
         className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg mt-3
                text-sm px-5 py-2.5 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800 text-center">
-        {t('Btn_to_pick_char')}
+        {tb('main-page')}
       </Link>
     </div>
   )
