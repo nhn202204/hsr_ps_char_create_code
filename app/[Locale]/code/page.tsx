@@ -15,9 +15,7 @@ const MakeCodePage = ({ searchParams }: { searchParams: { ids: string | string[]
   if (ids.length < 1) return (<h1 className="w-full flex justify-center">Bạn chưa chọn Char / Char not picked yet</h1>)
 
   return (
-    <>
-      {ids.map(id => <MakeCode key={id} id={id} />)}
-    </>
+    <MakeCode />
   )
 }
 

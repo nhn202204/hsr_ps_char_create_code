@@ -1,7 +1,4 @@
 
-// import Image from "next/image"
-// import { getLocale } from "next-intl/server"
-
 import { promises as fs } from 'fs';
 
 import ClippedImage from '@/components/ClippedImage';
@@ -9,8 +6,7 @@ import { CharacterDatas, LightconeDatas, RelicsDatas } from "@/data/type";
 import CharacterStat from "@/components/CharacterStat";
 import ColorTag from "@/components/ColorTag";
 import path from 'path';
-import Link from 'next/link';
-import { useTranslations } from 'next-intl';
+import EquipmentStickyButton from '@/components/EquipmentStickyButton';
 
 const EquipmentPage = async ({ params, searchParams }: {
   params: { slug: string }, searchParams: { ids: string | string[] | undefined }
@@ -53,22 +49,8 @@ const EquipmentPage = async ({ params, searchParams }: {
         </div>
       )}
 
-      <StickyButton ids={ids} />
+      <EquipmentStickyButton ids={ids} />
     </div>
-  )
-}
-
-const StickyButton = ({ ids }: { ids: string | string[] | undefined }) => {
-
-  const t = useTranslations('StickyButton');
-
-  return (
-    <Link href={{ pathname: "/code", query: { ids } }}
-      className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg
-           text-sm mx-5 px-5 py-2.5 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800 text-center
-           sticky bottom-4 z-20">
-      {t("equipment-page")}
-    </Link>
   )
 }
 

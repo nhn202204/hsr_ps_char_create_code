@@ -9,7 +9,7 @@ interface props {
 const CheckBoxButton: React.FC<PropsWithChildren<props>> = ({ children, id, onChange, checked }) => {
 
   return (
-    <div className="relative flex items-start py-1 ml-2">
+    <div className="relative flex items-start">
       <input id={id.toString()} type="checkbox" checked={checked} className="hidden peer" name="preferred_activities[]" value={id}
         onChange={onChange} />
       <label htmlFor={id.toString()} 

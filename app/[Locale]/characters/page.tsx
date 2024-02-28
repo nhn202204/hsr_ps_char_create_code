@@ -2,6 +2,7 @@
 
 import CharacterSelector from '@/components/CharacterSelector';
 import { CharacterDatas } from '@/data/type';
+import { Navbar } from 'flowbite-react';
 
 import { promises as fs } from 'fs';
 // import path from 'path';
@@ -12,7 +13,9 @@ export default async function CharacterPage() {
   const datas: CharacterDatas = JSON.parse(fileCharacters)
 
   return (
-    <CharacterSelector {...{ datas }} />
+    <>
+      <CharacterSelector {...{ datas }} />
+    </>
   )
 }
 

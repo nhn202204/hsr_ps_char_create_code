@@ -100,7 +100,7 @@ const CharacterStat: React.FC<Props> = ({ charObj, lightconeDatas, relicsDatas }
 
   const lightconeList = lightconeDatas.filter(lc => lc.path.includes(charObj.path))
 
-  const [lightcone, setLightcone] = useState<LightconeData>(() => lightconeList.find(_lc => _lc.note.includes(charObj.lc)) || lightconeList[0])
+  const [lightcone, setLightcone] = useLocalStorage<LightconeData>(`${charObj.id}-lightcone`, () => lightconeList.find(_lc => _lc.note.includes(charObj.lc)) || lightconeList[0])
 
   const handleLCClick: MouseEventHandler<HTMLButtonElement> = (e) => {
     e.preventDefault()
@@ -127,7 +127,7 @@ const CharacterStat: React.FC<Props> = ({ charObj, lightconeDatas, relicsDatas }
   const relicSet2SetList = relicSet2List.filter((value, index, self) => self.findIndex(vl => vl.code === value.code) === index)
 
   const [relicSet4HeadArm, setRelicSet4HeadArm] = useLocalStorage<RelicsData>(`${charObj.id}-relic-top`,
-    () => relicSet4List.find(_rl => _rl["ten set"].includes(charObj.set_4_top)) || relicSet4List[0], { initializeWithValue: true })
+    () => relicSet4List.find(_rl => _rl["ten set"].includes(charObj.set_4_top)) || relicSet4List[0])
 
   const handlePickRelicSet4HeadArmList: PointerEventHandler<HTMLButtonElement> = (e) => {
     const newRL4 = relicSet4List.find(_rl => _rl.id.toString() === e.currentTarget.id)
@@ -135,7 +135,7 @@ const CharacterStat: React.FC<Props> = ({ charObj, lightconeDatas, relicsDatas }
   }
 
   const [relicSet4BodyFoot, setRelicSet4BodyFoot] = useLocalStorage<RelicsData>(`${charObj.id}-relic-bot`,
-    () => relicSet4List.find(_rl => _rl["ten set"].includes(charObj.set_4_bot)) || relicSet4List[0], { initializeWithValue: true })
+    () => relicSet4List.find(_rl => _rl["ten set"].includes(charObj.set_4_bot)) || relicSet4List[0])
 
   const handlePickRelicSet4BodyFootList: PointerEventHandler<HTMLButtonElement> = (e) => {
     const newRL4 = relicSet4List.find(_rl => _rl.id.toString() === e.currentTarget.id)
@@ -144,7 +144,7 @@ const CharacterStat: React.FC<Props> = ({ charObj, lightconeDatas, relicsDatas }
 
   const [mainAffixPickedBonus, setMainAffixPickedBonus] = useState(initialStatObj)
 
-  const [mainAffixPicked, setMainAffixPicked] = useLocalStorage(`${charObj.id}-main-affix`, initialMainAffixPicked, { initializeWithValue: true })
+  const [mainAffixPicked, setMainAffixPicked] = useLocalStorage(`${charObj.id}-main-affix`, initialMainAffixPicked)
 
   const handlePickMainAffix: PointerEventHandler<HTMLButtonElement> = (e) => {
     const [relic, affix] = e.currentTarget.id.split("-") as [keyof typeof mainAffixPicked, ValidMainAffix]
@@ -154,7 +154,7 @@ const CharacterStat: React.FC<Props> = ({ charObj, lightconeDatas, relicsDatas }
   }
 
   const [relicSet2, setRelicSet2] = useLocalStorage<RelicsData>(`${charObj.id}-relic-mid`,
-    () => relicSet2List.find(_rl => _rl["ten set"].includes(charObj.set_2)) || relicSet2List[0], { initializeWithValue: true })
+    () => relicSet2List.find(_rl => _rl["ten set"].includes(charObj.set_2)) || relicSet2List[0])
 
   const handlePickRelicSet2List: PointerEventHandler<HTMLButtonElement> = (e) => {
     const newRL2 = relicSet2List.find(_rl => _rl.id.toString() === e.currentTarget.id)
@@ -205,6 +205,8 @@ const CharacterStat: React.FC<Props> = ({ charObj, lightconeDatas, relicsDatas }
     setSteps(persitSteps)
     setStatBonus(persitStatBonus)
     setPersitSteps(persitSteps)
+    setPersitStatBonus(persitStatBonus)
+    setLightcone(lightcone)
     setRelicSet4HeadArm(relicSet4HeadArm)
     setRelicSet4BodyFoot(relicSet4BodyFoot)
     setRelicSet2(relicSet2)

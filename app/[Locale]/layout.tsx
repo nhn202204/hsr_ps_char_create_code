@@ -2,8 +2,9 @@ import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
 import { NextIntlClientProvider, useMessages } from 'next-intl';
-import LocaleSwitcher from "@/components/LocaleSwitcher";
 import JotaiProvider from "@/components/JotaiProvider";
+import Navigation from "@/components/Navigation";
+import ScrollToTopButton from "@/components/ScrollToTopButton";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -29,9 +30,11 @@ export default function RootLayout({
       <body className={inter.className + " container mx-auto relative"}>
         <NextIntlClientProvider messages={messages}>
           <JotaiProvider>
-            <div className="fixed top-1 left-1 z-50 text-[6pt] text-gray-600 flex flex-col">
-              <LocaleSwitcher />
-              {`20240227.2327`}
+            <Navigation />
+            <div className="fixed bottom-1 right-1 z-50 text-[6pt] text-gray-600 flex flex-col">
+              {/* <LocaleSwitcher /> */}
+              {`20240228.2252`}
+              <ScrollToTopButton />
             </div>
             {children}
           </JotaiProvider>
