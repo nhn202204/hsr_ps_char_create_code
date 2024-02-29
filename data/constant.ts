@@ -113,3 +113,15 @@ export const RELIC_MAIN_AFFIX_BONUS = {
   "QUANTUM DMG": 38.88,
   "IMAGINARY DMG": 38.88,
 } as const
+
+export const RATE_BONUS_POINT_PER_STEP = {
+  HP: 4.234,
+  ATK: 2.117,
+  DEF: 2.116,
+  SPD: 0.3,
+  CR: 0.324,
+  CD: 0.648,
+  BREAK: 0.648,
+  EHR: 0.432,
+  RES: 0.432
+}

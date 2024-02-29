@@ -54,6 +54,7 @@ export interface LightconeData {
   path: string
   "van menh": string
   note: string
+  S: number
 }
 
 export type RelicMainAffix = {

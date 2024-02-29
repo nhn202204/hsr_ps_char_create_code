@@ -1,30 +1,23 @@
 'use client'
 
-import { STATS, STAT_UP_VALUE } from "@/data/constant"
 import { ChangeEventHandler, MouseEventHandler, useEffect, useState } from "react"
 
-export type ChangedFunc = ({ label, id }: { label: typeof STATS[number], id: string, value: number }) => void
-export type StepFunc = ({ label, id }: { label: typeof STATS[number], id: string }) => void
+export type EidolonChangedFunc = (value: number) => void
+export type EidolonStepFunc = ({ label, id }: { label: string, id: string }) => void
 
 interface Props {
-  label: typeof STATS[number], id: string, initStat: number, initStatBonus: number, totalStep: number, maxStep: number
-  decrement: StepFunc
-  increment: StepFunc
-  stepChanged: ChangedFunc
-  statBonusChanged: ChangedFunc
+  label: string, id: string, initStat: number, maxStep: number
+  stepChanged: EidolonChangedFunc
 }
 
-const InputNumberWithStepHandler: React.FC<Props> = ({ label, id, decrement, increment, stepChanged, statBonusChanged, initStat, initStatBonus, totalStep, maxStep }) => {
+const CharacterEidolonInput: React.FC<Props> = ({ label, id, stepChanged, initStat, maxStep }) => {
 
   const [step, setStep] = useState<number>(initStat)
 
-  const [statBonus, setStatBonus] = useState<number>(initStatBonus)
-
   const handelIncrement: MouseEventHandler<HTMLButtonElement> = (e) => {
     e.preventDefault()
-    if (totalStep < maxStep) {
+    if (step < maxStep) {
       setStep(() => step + 1)
-      increment({ label, id })
     }
   }
 
@@ -32,7 +25,6 @@ const InputNumberWithStepHandler: React.FC<Props> = ({ label, id, decrement, inc
     e.preventDefault()
     if (step > 0) {
       setStep(() => step - 1)
-      decrement({ label, id })
     }
   }
 
@@ -42,26 +34,16 @@ const InputNumberWithStepHandler: React.FC<Props> = ({ label, id, decrement, inc
     if (newStep > maxStep) newStep = maxStep
     else if (newStep < 0) newStep = 0
     setStep(newStep)
-    stepChanged({ label, id, value: newStep })
   }
 
   useEffect(() => {
-    setStatBonus(() => {
-      const arr: number[] = new Array(step).fill(0)
-      const newStatBonus = parseFloat(arr.reduce((acc) => (acc + STAT_UP_VALUE[label][Math.floor(Math.random() * STAT_UP_VALUE[label].length)]), 0).toFixed(1))
-      return newStatBonus
-    })
+    stepChanged(step)
   }, [step])
-
-  useEffect(() => {
-    statBonusChanged({ label, id, value: statBonus })
-  }, [statBonus])
 
   return (
     <>
-      <div className="flex flex-col col-span-2">
+      <div className="flex items-center col-span-2">
         <label htmlFor={id} className={`text-gray-900 dark:text-white mr-2 break-words`}>{label}</label>
-        <label htmlFor={id} className={`text-[8pt] text-gray-900 dark:text-white break-words`}>+{statBonus}</label>
       </div>
       <div className={`relative flex items-center w-full col-span-5`}>
         <button type="button" id={"decrement-button-" + id} onClick={handelDecrement}
@@ -87,4 +69,4 @@ const InputNumberWithStepHandler: React.FC<Props> = ({ label, id, decrement, inc
   )
 }
 
-export default InputNumberWithStepHandler
+export default CharacterEidolonInput

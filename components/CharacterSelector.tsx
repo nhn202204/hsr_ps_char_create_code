@@ -8,7 +8,7 @@ import { useIsClient } from 'usehooks-ts'
 import ColorTag from "./ColorTag"
 import { useTranslations } from "next-intl"
 import { CharacterDatas } from "@/data/type"
-import StickyButton from "./StickyButton"
+import CharacterStickyButton from "./CharacterStickyButton"
 
 const CharacterSelector: React.FC<{ datas: CharacterDatas }> = ({ datas }) => {
 
@@ -42,7 +42,7 @@ const CharacterSelector: React.FC<{ datas: CharacterDatas }> = ({ datas }) => {
           </CheckBoxButton>)}
       </div>
 
-      <StickyButton
+      <CharacterStickyButton
         pathname={"/equipment"}
         ids={charObjSelected.map(char => char.id.toString())}
         text={t('character-page')}

@@ -14,6 +14,7 @@ import InputNumberWithStepHandler, { ChangedFunc, StepFunc } from "./InputNumber
 import { Dropdown } from "flowbite-react"
 import { useTranslations } from 'next-intl'
 import { useLocale } from "next-intl";
+import CharacterEidolonInput, { EidolonChangedFunc } from "./CharacterEidolonInput"
 
 const initialStatObj: StatObj = {
   ATK: 0,
@@ -53,6 +54,10 @@ const CharacterStat: React.FC<Props> = ({ charObj, lightconeDatas, relicsDatas }
 
   const t = useTranslations('EquipmentPage');
 
+  const [eidolon, setEidolon] = useState<number>(charObj.E)
+
+  const [persitEidolon, setPersitEidolon] = useLocalStorage<number>(`${charObj.id}-eidolon`, charObj.E)
+
   const [persitSteps, setPersitSteps] = useLocalStorage<StatObj>(`${charObj.id}-steps`, initialStatObj)
 
   const [steps, setSteps] = useState<StatObj>(initialStatObj)
@@ -66,19 +71,6 @@ const CharacterStat: React.FC<Props> = ({ charObj, lightconeDatas, relicsDatas }
   const [totalStep, setTotalStep] = useState<number>(0)
 
   const isClient = useIsClient()
-
-  const handleClick = (act: "save" | "cancel" | 'edit') => {
-    if (act === "save") {
-      setPersitSteps(steps)
-      setPersitStatBonus(statBonus)
-    } else if (act === "edit") {
-      // setPersitSteps(steps)
-    } else if (act === "cancel") {
-      setSteps(persitSteps)
-      setStatBonus(persitStatBonus)
-    }
-    setEdit(!edit)
-  }
 
   const handleIncrement: StepFunc = ({ label }) => {
     setSteps((oldStep) => ({ ...oldStep, ...{ [label]: oldStep[label] + 1 } }))
@@ -108,10 +100,12 @@ const CharacterStat: React.FC<Props> = ({ charObj, lightconeDatas, relicsDatas }
   }
 
   const handlePickLC: PointerEventHandler<HTMLButtonElement> = (e) => {
-    e.preventDefault()
-    e.stopPropagation()
     const newLC = lightconeList.find(_lc => _lc.id.toString() === e.currentTarget.id)
     newLC && setLightcone(newLC)
+  }
+
+  const handlePickLC_S: PointerEventHandler<HTMLButtonElement> = (e) => {
+    setLightcone(old => ({ ...old, ...{ S: parseInt(e.currentTarget.id) } }))
   }
 
   const [openRelicSet4HeadArmList, setOpenRelicSet4HeadArmList] = useState<boolean>(false)
@@ -173,6 +167,21 @@ const CharacterStat: React.FC<Props> = ({ charObj, lightconeDatas, relicsDatas }
     }
   }
 
+  const handleClick = (act: "save" | "cancel" | 'edit') => {
+    if (act === "save") {
+      setPersitSteps(steps)
+      setPersitStatBonus(statBonus)
+      setPersitEidolon(eidolon)
+    } else if (act === "edit") {
+      // setPersitSteps(steps)
+    } else if (act === "cancel") {
+      setSteps(persitSteps)
+      setStatBonus(persitStatBonus)
+      setEidolon(persitEidolon)
+    }
+    setEdit(!edit)
+  }
+
   useEffect(() => {
     const relicLoop = ["Body", "Foot", "Rope", "Sphere"] as const
     const newAffixPickedBonus = relicLoop.reduce((acc, relic) => {
@@ -206,6 +215,7 @@ const CharacterStat: React.FC<Props> = ({ charObj, lightconeDatas, relicsDatas }
     setStatBonus(persitStatBonus)
     setPersitSteps(persitSteps)
     setPersitStatBonus(persitStatBonus)
+    setPersitEidolon(persitEidolon)
     setLightcone(lightcone)
     setRelicSet4HeadArm(relicSet4HeadArm)
     setRelicSet4BodyFoot(relicSet4BodyFoot)
@@ -217,6 +227,10 @@ const CharacterStat: React.FC<Props> = ({ charObj, lightconeDatas, relicsDatas }
     setTotalStep(() => STATS.reduce((acc, curr) => (acc + steps[curr]), 0))
   }, [steps])
 
+  const handleEidolonChanged: EidolonChangedFunc = (e) => {
+    setEidolon(e)
+  }
+
   if (!isClient) return <p>Loading...</p>
 
   return (
@@ -225,7 +239,7 @@ const CharacterStat: React.FC<Props> = ({ charObj, lightconeDatas, relicsDatas }
         <div className="grid grid-cols-7" key={stat}>
           {edit ?
             <InputNumberWithStepHandler
-              initStat={steps[stat]} initStatBonus={statBonus[stat]}
+              initStat={steps[stat]} initStatBonus={statBonus[stat]} maxStep={36}
               label={stat} id={charObj.id + stat} totalStep={totalStep}
               statBonusChanged={handleStatBonusChanged} stepChanged={handleStepChanged}
               increment={handleIncrement} decrement={handleDecrement} />
@@ -242,6 +256,16 @@ const CharacterStat: React.FC<Props> = ({ charObj, lightconeDatas, relicsDatas }
           }
         </div>
       )}
+
+      {edit &&
+        <div className="grid grid-cols-7">
+          <CharacterEidolonInput
+            initStat={eidolon} maxStep={6}
+            label={"Eidolon"} id={charObj.id.toString()}
+            stepChanged={handleEidolonChanged}
+          />
+        </div>
+      }
       {!edit &&
         <>
           <div className="grid grid-cols-7" id={"ERR"}>
@@ -256,10 +280,25 @@ const CharacterStat: React.FC<Props> = ({ charObj, lightconeDatas, relicsDatas }
               {`(+${mainAffixPickedBonus[`ELE DMG`] > 0 ? `${mainAffixPickedBonus[`ELE DMG`]}` : 0})`}
             </label>
           </div>
+          <div className="grid grid-cols-7" id={"EIDOLON"}>
+            <label className={`h-full flex items-center text-gray-900 dark:text-white col-span-3`}>{`EIDOLON`}</label>
+            <label className={`h-full flex items-center text-gray-900 dark:text-white col-span-4`}>
+              {persitEidolon}
+            </label>
+          </div>
         </>
       }
 
-      <ColorTag label={`${t('Btn-total-step')}: ${totalStep}/36`} className="bg-opacity-100" />
+      <ColorTag label={`${t('Btn-total-step')}: ${totalStep}/36`} className={`bg-opacity-100 col-span-2 ${edit ? 'sm:col-span-2' : 'sm:col-span-1'}`} />
+      {!edit &&
+        <button type="button" onClick={() => handleClick(edit ? 'save' : 'edit')}
+          className="text-white bg-green-600 hover:bg-green-800 focus:ring-4 focus:ring-green-300 hidden sm:block
+                    font-medium rounded-lg text-sm py-2 dark:bg-green-600 
+                    dark:hover:bg-green-700 focus:outline-none dark:focus:ring-green-800"
+        >
+          {`Edit - Chỉnh sửa`}
+        </button>
+      }
 
       {edit ?
         <>
@@ -280,7 +319,7 @@ const CharacterStat: React.FC<Props> = ({ charObj, lightconeDatas, relicsDatas }
         </>
         :
         <button type="button" onClick={() => handleClick(edit ? 'save' : 'edit')}
-          className="absolute -top-10 right-1 text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none
+          className="absolute -top-10 right-1 sm:invisible text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none
                     focus:ring-blue-300 font-medium rounded-full text-sm p-2.5 text-center inline-flex items-center
                     dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
           <svg className="w-4 h-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="#FFFFFF">
@@ -326,28 +365,45 @@ const CharacterStat: React.FC<Props> = ({ charObj, lightconeDatas, relicsDatas }
       </div>
 
       {openLCList &&
-        <div className="w-full col-span-2" is="Lightcone">
-          <Dropdown
-            className="h-[20rem] overflow-auto"
-            label={"LC: " + lightcone[`${locale === "vn" ? "ten" : "name"}`]}
-            theme={{ floating: { target: "w-full" } }}
-          >
-            <div className="w-full h-28" >
-              {lightconeList.map(lc => (
-                <Dropdown.Item className="pl-2 pb-0 pt-1" key={lc.id} id={lc.id.toString()} onPointerDown={handlePickLC}>
-                  <Image src={`/lightcones/${lc.id}.webp`} alt={`LC ${locale === "vn" ? lc.ten : lc.name}`} width="30" height="30"
-                    style={{ width: 'auto', height: 'auto' }}
-                  />
-                  <span className="pl-2">{locale === "vn" ? lc.ten : lc.name}</span>
-                </Dropdown.Item>
-              ))}
-            </div>
-          </Dropdown>
+        <div className="w-full col-span-2 grid grid-cols-7 gap-1" >
+          <div className="w-full col-span-6" id="Lightcone">
+            <Dropdown
+              className="h-[20rem] overflow-auto"
+              label={"LC: " + lightcone[`${locale === "vn" ? "ten" : "name"}`]}
+              theme={{ floating: { target: "w-full" } }}
+            >
+              <div className="w-full h-28" >
+                {lightconeList.map(lc => (
+                  <Dropdown.Item className="pl-2 pb-0 pt-1" key={lc.id} id={lc.id.toString()} onPointerDown={handlePickLC}>
+                    <Image src={`/lightcones/${lc.id}.webp`} alt={`LC ${locale === "vn" ? lc.ten : lc.name}`} width="30" height="30"
+                      style={{ width: 'auto', height: 'auto' }}
+                    />
+                    <span className="pl-2">{locale === "vn" ? lc.ten : lc.name}</span>
+                  </Dropdown.Item>
+                ))}
+              </div>
+            </Dropdown>
+          </div>
+          <div className="w-full" id="Lightcone S">
+            <Dropdown
+              className="h-[8.5rem] overflow-auto"
+              label={`S${lightcone.S || 1}`}
+              theme={{ floating: { target: "w-full" } }}
+            >
+              <div className="w-full h-28" >
+                {[1, 2, 3, 4, 5].map(s => (
+                  <Dropdown.Item className="pl-2 pb-0 pt-1" key={"lsc" + s} id={s.toString()} onPointerDown={handlePickLC_S}>
+                    <span className="pl-2">{s}</span>
+                  </Dropdown.Item>
+                ))}
+              </div>
+            </Dropdown>
+          </div>
         </div>
       }
 
       {openRelicSet4HeadArmList &&
-        <div className="w-full col-span-2" is={`Set4Top`}>
+        <div className="w-full col-span-2" id={`Set4Top`}>
           <Dropdown
             className="h-[20rem] overflow-auto"
             label={"Top: " + relicSet4HeadArm[`${locale === "vn" ? "ten set" : "set name"}`]}
