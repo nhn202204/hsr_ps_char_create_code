@@ -47,11 +47,11 @@ const InputNumberWithStepHandler: React.FC<Props> = ({ label, id, stepChanged, s
       const newStatBonus = parseFloat(arr.reduce((acc) => (acc + STAT_UP_VALUE[label][Math.floor(Math.random() * STAT_UP_VALUE[label].length)]), 0).toFixed(1))
       return newStatBonus
     })
-  }, [label, id, stepChanged, step])
+  }, [step])
 
   useEffect(() => {
     statBonusChanged({ label, id, value: statBonus })
-  }, [label, id, statBonusChanged, statBonus])
+  }, [statBonus])
 
   return (
     <>

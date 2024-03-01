@@ -38,7 +38,7 @@ const CharacterEidolonInput: React.FC<Props> = ({ label, id, stepChanged, initSt
 
   useEffect(() => {
     stepChanged(step)
-  }, [stepChanged, step])
+  }, [step])
 
   return (
     <>
