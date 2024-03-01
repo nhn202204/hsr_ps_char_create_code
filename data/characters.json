@@ -19,7 +19,7 @@
   "body": "CD",
   "foot": "SPD",
   "pos_top": 120,
-  "pos_left": 0,
+  "pos_left": 30,
   "scale": 1.7
  },
  {
@@ -110,9 +110,9 @@
   "rope": "ERR",
   "body": "EHR",
   "foot": "SPD",
-  "pos_top": 50,
-  "pos_left": 40,
-  "scale": 2
+  "pos_top": 170,
+  "pos_left": 60,
+  "scale": 2.9
  },
  {
   "id": 1301,
@@ -133,9 +133,9 @@
   "rope": "ERR",
   "body": "HEAL",
   "foot": "SPD",
-  "pos_top": 40,
-  "pos_left": 0,
-  "scale": 1.2
+  "pos_top": 180,
+  "pos_left": 100,
+  "scale": 1.7
  },
  {
   "id": 1306,
@@ -179,9 +179,9 @@
   "rope": "ATK",
   "body": "EHR",
   "foot": "SPD",
-  "pos_top": 0,
-  "pos_left": 0,
-  "scale": 2
+  "pos_top": 150,
+  "pos_left": 50,
+  "scale": 3
  },
  {
   "id": 1005,
@@ -202,9 +202,9 @@
   "rope": "ATK",
   "body": "ATK",
   "foot": "ATK",
-  "pos_top": 20,
+  "pos_top": 90,
   "pos_left": 0,
-  "scale": 2.1
+  "scale": 2.8
  },
  {
   "id": 1303,

@@ -2,7 +2,7 @@
 
 import { RELIC_MAIN_AFFIX_BONUS, RELIC_MAIN_AFFIX_ID, STATS } from "@/data/constant"
 import { CharacterData, LightconeData, LightconeDatas, RelicsData, RelicsDatas, StatObj, ValidMainAffix } from "@/data/type"
-import { MouseEventHandler, PointerEventHandler, useEffect, useLayoutEffect, useState } from "react"
+import { MouseEventHandler, PointerEventHandler, useEffect, useState } from "react"
 
 import Image from "next/image"
 import ColorTag from "./ColorTag"
@@ -235,7 +235,7 @@ const CharacterStat: React.FC<Props> = ({ charObj, lightconeDatas, relicsDatas }
   if (!isClient) return <p>Loading...</p>
 
   return (
-    <form className="w-full p-1 grid grid-cols-2 gap-x-2 gap-y-1 relative">
+    <form className="w-full p-1 grid grid-cols-2 gap-x-2 gap-y-1 relative md:text-sm">
       {STATS.map(stat =>
         <div className="grid grid-cols-7" key={stat}>
           {edit ?
@@ -243,7 +243,7 @@ const CharacterStat: React.FC<Props> = ({ charObj, lightconeDatas, relicsDatas }
               initStat={steps[stat]} initStatBonus={statBonus[stat]} maxStep={36}
               label={stat} id={charObj.id + stat} totalStep={totalStep}
               statBonusChanged={handleStatBonusChanged} stepChanged={handleStepChanged}
-              />
+            />
             :
             <>
               <label className={`h-full flex items-center text-gray-900 dark:text-white col-span-2`}>{stat}</label>
@@ -297,7 +297,7 @@ const CharacterStat: React.FC<Props> = ({ charObj, lightconeDatas, relicsDatas }
                     font-medium rounded-lg text-sm py-2 dark:bg-green-600 
                     dark:hover:bg-green-700 focus:outline-none dark:focus:ring-green-800"
         >
-          {`Edit - Chỉnh sửa`}
+          {t('Btn-edit')}
         </button>
       }
 
@@ -308,14 +308,14 @@ const CharacterStat: React.FC<Props> = ({ charObj, lightconeDatas, relicsDatas }
                         font-medium rounded-lg text-sm py-2 dark:bg-blue-600 
                         dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800`}
           >
-            {`Save - Lưu`}
+            {t('Btn-save')}
           </button>
           <button type="button" onClick={() => handleClick('cancel')}
             className="text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:ring-red-300 
             font-medium rounded-lg text-sm py-2 dark:bg-red-600 
             dark:hover:bg-red-700 focus:outline-none dark:focus:ring-red-800"
           >
-            {`Cancel`}
+            {t('Btn-cancel')}
           </button>
         </>
         :
@@ -378,7 +378,7 @@ const CharacterStat: React.FC<Props> = ({ charObj, lightconeDatas, relicsDatas }
               <div className="w-full" >
                 {LCList.map(lc => (
                   <Dropdown.Item className="pl-2 pb-0 pt-1" key={lc.id} id={lc.id.toString()} onPointerDown={handlePickLC}>
-                    <Image src={`/lightcones/${lc.id}.webp`} alt={`LC ${locale === "vn" ? lc.ten : lc.name}`} width="30" height="30"
+                    <Image src={`/lightcones/${lc.id}.webp`} alt={`LC ${locale === "vn" ? lc.ten : lc.name}`} width="40" height="40"
                       style={{ width: 'auto', height: 'auto' }}
                     />
                     <span className="pl-2">{locale === "vn" ? lc.ten : lc.name}</span>
@@ -429,8 +429,10 @@ const CharacterStat: React.FC<Props> = ({ charObj, lightconeDatas, relicsDatas }
           >
             {relicSet4SetList.map(rl => (
               <Dropdown.Item className="pl-2 py-0" key={rl.id} id={rl.id.toString()} onPointerDown={handlePickRelicSet4HeadArmList}>
-                <Image src={`/relics/${rl.code}.webp`} alt={`Relic ${rl["ten set"]}`} width="30" height="30"
-                  style={{ width: 'auto', height: 'auto' }} />
+                <Image src={`/relics/${rl.code}.webp`} alt={`Relic ${rl["ten set"]}`}
+                  width="50" height="40"
+                  style={{ width: 'auto', height: 'auto' }}
+                />
                 <span className="pl-2">{locale === "vn" ? rl["ten set"] : rl["set name"]}</span>
               </Dropdown.Item>
             ))}
@@ -448,8 +450,10 @@ const CharacterStat: React.FC<Props> = ({ charObj, lightconeDatas, relicsDatas }
             >
               {relicSet2SetList.map(rl => (
                 <Dropdown.Item className="pl-2 py-0" key={rl.id} id={rl.id.toString()} onPointerDown={handlePickRelicSet2List}>
-                  <Image src={`/relics/${rl.code}.webp`} alt={`Relic ${rl["ten set"]}`} width="30" height="30"
-                    style={{ width: 'auto', height: 'auto' }} />
+                  <Image src={`/relics/${rl.code}.webp`} alt={`Relic ${rl["ten set"]}`}
+                    width="50" height="40"
+                    style={{ width: 'auto', height: 'auto' }}
+                  />
                   <span className="pl-2">{locale === "vn" ? rl["ten set"] : rl["set name"]}</span>
                 </Dropdown.Item>
               ))}
@@ -486,8 +490,10 @@ const CharacterStat: React.FC<Props> = ({ charObj, lightconeDatas, relicsDatas }
             >
               {relicSet4SetList.map(rl => (
                 <Dropdown.Item className="pl-2 py-0" key={rl.id} id={rl.id.toString()} onPointerDown={handlePickRelicSet4BodyFootList}>
-                  <Image src={`/relics/${rl.code}.webp`} alt={`Relic ${rl["ten set"]}`} width="30" height="30"
-                    style={{ width: 'auto', height: 'auto' }} />
+                  <Image src={`/relics/${rl.code}.webp`} alt={`Relic ${rl["ten set"]}`}
+                    width="50" height="40"
+                    style={{ width: 'auto', height: 'auto' }}
+                  />
                   <span className="pl-2">{locale === "vn" ? rl["ten set"] : rl["set name"]}</span>
                 </Dropdown.Item>
               ))}

@@ -5,8 +5,12 @@
     "desc_2": "All HP ATK DEF is % not flat at all.",
     "desc_3": "I currently do not have time to input the Base char and Lightcone stats data, will gradually add this section!.",
     "desc_4": "All data will be saved on your machine, may be lost due to your activities and I do not save the data anywhere else!.",
-    "desc_5": "Let's start below! Enjoy",
-    "Btn_to_pick_char": "To Characters picker page"
+    "desc_5": "The steps include: Select Char -> Add stats, select Artifacts, hat, soul -> Generate code -> Paste over old code",
+    "desc_6": "Navigate to the file path below:",
+    "desc_7": "Find the file named: BattleReqGroup.cs, open it with Notepad",
+    "desc_8": "Ctrl+A -> Ctrl+V -> Ctrl+S --> dotnet build",
+    "desc_9": "Let's start below! Enjoy",
+    "Btn_to_pick_char": "Translate Vietnamese to English by ClaudeAI"
   },
   "NotFoundPage": {
     "title": "Page Not Found",
@@ -33,6 +37,9 @@
     "Btn-total-step": "Total step",
     "Btn-affix-sphere": "Sphere",
     "Btn-affix-rope": "Rope",
+    "Btn-edit": "Edit step + eidolon",
+    "Btn-save": "Save",
+    "Btn-cancel": "Cancel",
     "description_top": "Top: Head + Arm",
     "description_mid": "Mid: Sphere + Rope",
     "description_bot": "Bot: Body + Foot"

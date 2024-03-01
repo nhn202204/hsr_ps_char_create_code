@@ -5,7 +5,11 @@
     "desc_2": "Tất cả chỉ số HP ATK DEF đều là %",
     "desc_3": "Hiện mình chưa có thời gian nhập liệu các chỉ số Base char, nón. Sẽ từ từ bổ sung phần này.",
     "desc_4": "Tất cả dữ liệu sẽ lưu trên máy của bạn, có thể sẽ mất do các hoạt động của bạn và dữ liệu mình không lưu ở đâu khác.",
-    "desc_5": "Bắt đầu bên dưới nhé! Enjoy",
+    "desc_5": "Các bước bao gồm: Chọn Char -> Cộng stat, chọn Di vật, nón, tinh hồn -> Tạo code -> Dán đè code cũ",
+    "desc_6": "Tìm đến đường dẫn file dưới đây:",
+    "desc_7": "Tìm file có tên: BattleReqGroup.cs, mở ra bằng Notepad",
+    "desc_8": "Ctrl+A -> Ctrl+V -> Ctrl+S --> dotnet build",
+    "desc_9": "Dịch sang Tiếng Anh bằng ClaudeAI",
     "Btn_to_pick_char": "Tới trang chọn nhân vật"
   },
   "NotFoundPage": {
@@ -33,6 +37,9 @@
     "Btn-total-step": "Tổng điểm",
     "Btn-affix-sphere": "Cầu",
     "Btn-affix-rope": "Dây",
+    "Btn-edit": "Chỉnh điểm cộng + tinh hồn",
+    "Btn-save": "Lưu",
+    "Btn-cancel": "Hủy",
     "description_top": "Top: Đầu + Tay",
     "description_mid": "Mid: Cầu + Dây",
     "description_bot": "Bot: Áo + Giày"
