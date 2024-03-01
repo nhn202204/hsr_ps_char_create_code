@@ -10,7 +10,7 @@ import { promises as fs } from 'fs';
 export default async function CharacterPage() {
 
   const fileCharacters = await fs.readFile(process.cwd() + '/data/characters.json', 'utf8');
-  const datas: CharacterDatas = JSON.parse(fileCharacters)
+  const datas = (JSON.parse(fileCharacters) as CharacterDatas).sort((a, b) => a.stt - b.stt)
 
   return (
     <>

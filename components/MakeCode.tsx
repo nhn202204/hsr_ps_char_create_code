@@ -281,7 +281,7 @@ const composeAvatarCase = ({ charObj, isVN }: { charObj: CharacterData, isVN: bo
                               Id = ${lc.id},  //${isVN ? lc.ten : lc.name}
                               Level = 80,
                               Promotion = 6,
-                              Rank = ${lc.S || 1}
+                              Rank = ${lc.rank}
                           } }
                       };
                       break;`

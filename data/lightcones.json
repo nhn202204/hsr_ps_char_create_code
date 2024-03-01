@@ -1,27 +1,13 @@
 [
  {
-  "id": 23024,
-  "name": "Along the Passing Shore",
-  "ten": "Dọc Theo Bến Bờ Thời Gian",
-  "path": "The Nihility",
-  "van menh": "Hư Vô",
-  "note": "Trấn Acheron"
- },
- {
-  "id": 21015,
-  "name": "Resolution Shines As Pearls of Sweat",
-  "ten": "Sự Quyết Tâm Như Giọt Mồ Hôi Lấp Lánh",
-  "path": "The Nihility",
-  "van menh": "Hư Vô",
-  "note": "Đánh hạ, Mồ hôi, nón hình luka"
- },
- {
-  "id": 23007,
-  "name": "Incessant Rain",
-  "ten": "Cơn Mưa Tầm Tã",
-  "path": "The Nihility",
-  "van menh": "Hư Vô",
-  "note": "Trấn Sói"
+  "id": 21016,
+  "name": "Trend of the Universal Market",
+  "ten": "Xu Hướng Thị Trường Vũ Trụ",
+  "path": "The Preservation",
+  "van menh": "Bảo Hộ",
+  "note": "Xu hướng, nón hình topaz",
+  "star": 4,
+  "rank": 5
  },
  {
   "id": 23023,
@@ -29,7 +15,9 @@
   "ten": "Vận Mệnh Chưa Từng Công Bằng",
   "path": "The Preservation",
   "van menh": "Bảo Hộ",
-  "note": "Trấn Aventurine"
+  "note": "Trấn Aventurine",
+  "star": 5,
+  "rank": 1
  },
  {
   "id": 23011,
@@ -37,23 +25,29 @@
   "ten": "Đôi Mắt Đã Nhắm Lại",
   "path": "The Preservation",
   "van menh": "Bảo Hộ",
-  "note": "Trấn Fuxuan"
+  "note": "Trấn Fuxuan",
+  "star": 5,
+  "rank": 1
  },
  {
-  "id": 21016,
-  "name": "Trend of the Universal Market",
-  "ten": "Xu Hướng Thị Trường Vũ Trụ",
+  "id": 23005,
+  "name": "Moment of Victory",
+  "ten": "Giây Phút Thắng Lợi",
   "path": "The Preservation",
   "van menh": "Bảo Hộ",
-  "note": "Xu hướng, nón hình topaz"
+  "note": "Trấn Gepard",
+  "star": 5,
+  "rank": 1
  },
  {
-  "id": 22000,
-  "name": "Before the Tutorial Mission Starts",
-  "ten": "Trước Khi Bắt Đầu Nhiệm Vụ Tân Thủ",
-  "path": "The Nihility",
-  "van menh": "Hư Vô",
-  "note": "Tân thủ"
+  "id": 24002,
+  "name": "Texture of Memories",
+  "ten": "Chất Liệu Ký Ức",
+  "path": "The Preservation",
+  "van menh": "Bảo Hộ",
+  "note": "Nón Hư Vô Shop Herta",
+  "star": 5,
+  "rank": 1
  },
  {
   "id": 23019,
@@ -61,7 +55,9 @@
   "ten": "Tôi Trong Gương Ngày Ấy",
   "path": "The Harmony",
   "van menh": "Hòa Hợp",
-  "note": "Trấn Mei"
+  "note": "Trấn Mei",
+  "star": 5,
+  "rank": 1
  },
  {
   "id": 23021,
@@ -69,7 +65,59 @@
   "ten": "Trò Đùa Trần Thế",
   "path": "The Harmony",
   "van menh": "Hòa Hợp",
-  "note": "Trấn Sparkle"
+  "note": "Trấn Sparkle",
+  "star": 5,
+  "rank": 1
+ },
+ {
+  "id": 23003,
+  "name": "But the Battle Isn't Over",
+  "ten": "Cuộc Chiến Chưa Nguôi",
+  "path": "The Harmony",
+  "van menh": "Hòa Hợp",
+  "note": "Trấn Bronya",
+  "star": 5,
+  "rank": 1
+ },
+ {
+  "id": 21015,
+  "name": "Resolution Shines As Pearls of Sweat",
+  "ten": "Sự Quyết Tâm Như Giọt Mồ Hôi Lấp Lánh",
+  "path": "The Nihility",
+  "van menh": "Hư Vô",
+  "note": "Đánh hạ, Mồ Hôi, nón hình luka",
+  "star": 4,
+  "rank": 5
+ },
+ {
+  "id": 22000,
+  "name": "Before the Tutorial Mission Starts",
+  "ten": "Trước Khi Bắt Đầu Nhiệm Vụ Tân Thủ",
+  "path": "The Nihility",
+  "van menh": "Hư Vô",
+  "note": "Tân thủ",
+  "star": 4,
+  "rank": 5
+ },
+ {
+  "id": 23024,
+  "name": "Along the Passing Shore",
+  "ten": "Dọc Theo Bến Bờ Thời Gian",
+  "path": "The Nihility",
+  "van menh": "Hư Vô",
+  "note": "Trấn Acheron",
+  "star": 5,
+  "rank": 1
+ },
+ {
+  "id": 23007,
+  "name": "Incessant Rain",
+  "ten": "Cơn Mưa Tầm Tã",
+  "path": "The Nihility",
+  "van menh": "Hư Vô",
+  "note": "Trấn Sói",
+  "star": 5,
+  "rank": 1
  },
  {
   "id": 23006,
@@ -77,7 +125,9 @@
   "ten": "Chỉ Cần Chờ Đợi",
   "path": "The Nihility",
   "van menh": "Hư Vô",
-  "note": "Trấn Kafka"
+  "note": "Trấn Kafka",
+  "star": 5,
+  "rank": 1
  },
  {
   "id": 23022,
@@ -85,7 +135,9 @@
   "ten": "Hun Đúc Ký Ức Thời Gian",
   "path": "The Nihility",
   "van menh": "Hư Vô",
-  "note": "Trấn Black Swan"
+  "note": "Trấn Black Swan",
+  "star": 5,
+  "rank": 1
  },
  {
   "id": 24000,
@@ -93,7 +145,89 @@
   "ten": "Sự Sụp Đổ Của Aeon",
   "path": "The Destruction",
   "van menh": "Hủy Diệt",
-  "note": "Aeon"
+  "note": "Aeon",
+  "star": 5,
+  "rank": 1
+ },
+ {
+  "id": 23001,
+  "name": "In the Night",
+  "ten": "Trong Đêm Tối",
+  "path": "The Hunt",
+  "van menh": "Săn Bắn",
+  "note": "Trấn Seele",
+  "star": 5,
+  "rank": 1
+ },
+ {
+  "id": 23012,
+  "name": "Sleep Like the Dead",
+  "ten": "Giấc Ngủ Say Mềm",
+  "path": "The Hunt",
+  "van menh": "Săn Bắn",
+  "note": "Trấn Yancon",
+  "star": 5,
+  "rank": 1
+ },
+ {
+  "id": 23016,
+  "name": "Worrisome, Blissful",
+  "ten": "Phiền Não, Hạnh Phúc",
+  "path": "The Hunt",
+  "van menh": "Săn Bắn",
+  "note": "Trấn Topaz",
+  "star": 5,
+  "rank": 1
+ },
+ {
+  "id": 23020,
+  "name": "Baptism of Pure Thought",
+  "ten": "Lễ Rửa Tội Thuần Khiết",
+  "path": "The Hunt",
+  "van menh": "Săn Bắn",
+  "note": "Trấn Ratio",
+  "star": 5,
+  "rank": 1
+ },
+ {
+  "id": 24001,
+  "name": "Cruising in the Stellar Sea",
+  "ten": "Du Hành Trên Biển Sao",
+  "path": "The Hunt",
+  "van menh": "Săn Bắn",
+  "note": "Xuồng",
+  "star": 5,
+  "rank": 1
+ },
+ {
+  "id": 23000,
+  "name": "Night on the Milky Way",
+  "ten": "Chuyến Tàu Đêm Trên Dải Ngân Hà",
+  "path": "The Erudition",
+  "van menh": "Tri Thức",
+  "note": "Trấn Dì",
+  "star": 5,
+  "rank": 1
+ },
+ {
+  "id": 23010,
+  "name": "Before Dawn",
+  "ten": "Trước Buổi Bình Minh",
+  "path": "The Erudition",
+  "van menh": "Tri Thức",
+  "note": "Trấn Ngài",
+  "star": 5,
+  "rank": 1
+ },
+ {
+  "id": 23018,
+  "name": "An Instant Before A Gaze",
+  "ten": "Khoảnh Khắc Nơi Đáy Mắt",
+  "path": "The Erudition",
+  "van menh": "Tri Thức",
+  "note": "Trấn Agei",
+  "star": 5,
+  "rank": 1
  },
  {
   "id": 21021,
@@ -101,6 +235,328 @@
   "ten": "Đổi Ngang Giá",
   "path": "The Abundance",
   "van menh": "Trù Phú",
-  "note": "Đổi Ngang Giá"
+  "note": "Đổi Ngang Giá",
+  "star": 4,
+  "rank": 5
+ },
+ {
+  "id": 23008,
+  "name": "Echoes of the Coffin",
+  "ten": "Tiếng Vọng Của Quan Tài",
+  "path": "The Abundance",
+  "van menh": "Trù Phú",
+  "note": "Trấn Luocha",
+  "star": 5,
+  "rank": 1
+ },
+ {
+  "id": 23013,
+  "name": "Time Waits for No One",
+  "ten": "Thời Gian Không Ngừng Lại",
+  "path": "The Abundance",
+  "van menh": "Trù Phú",
+  "note": "Trấn Bailu",
+  "star": 5,
+  "rank": 1
+ },
+ {
+  "id": 23017,
+  "name": "Night of Fright",
+  "ten": "Đêm Kinh Hoàng",
+  "path": "The Abundance",
+  "van menh": "Trù Phú",
+  "note": "Trấn HuoHuo",
+  "star": 5,
+  "rank": 1
+ },
+ {
+  "id": 24003,
+  "name": "Solitary Healing",
+  "ten": "Một Mình Chữa Trị",
+  "path": "The Nihility",
+  "van menh": "Hư Vô",
+  "note": "Herta",
+  "star": 5,
+  "rank": 1
+ },
+ {
+  "id": 23004,
+  "name": "In the Name of the World",
+  "ten": "Nhân Danh Thế Giới",
+  "path": "The Nihility",
+  "van menh": "Hư Vô",
+  "note": "Trấn Chú",
+  "star": 5,
+  "rank": 1
+ },
+ {
+  "id": 23002,
+  "name": "Something Irreplaceable",
+  "ten": "Vật Không Thể Thay Thế",
+  "path": "The Destruction",
+  "van menh": "Hủy Diệt",
+  "note": "Trấn Clara",
+  "star": 5,
+  "rank": 1
+ },
+ {
+  "id": 23009,
+  "name": "The Unreachable Side",
+  "ten": "Bến Bờ Xa Diệu Vợi",
+  "path": "The Destruction",
+  "van menh": "Hủy Diệt",
+  "note": "Trấn Blade",
+  "star": 5,
+  "rank": 1
+ },
+ {
+  "id": 23014,
+  "name": "I Shall Be My Own Sword",
+  "ten": "Thân Này Là Kiếm",
+  "path": "The Destruction",
+  "van menh": "Hủy Diệt",
+  "note": "Trấn Jingliu",
+  "star": 5,
+  "rank": 1
+ },
+ {
+  "id": 23015,
+  "name": "Brighter Than the Sun",
+  "ten": "Rực Rỡ Hơn Mặt Trời",
+  "path": "The Destruction",
+  "van menh": "Hủy Diệt",
+  "note": "Trấn IL",
+  "star": 5,
+  "rank": 1
+ },
+ {
+  "id": 21030,
+  "name": "This Is Me!",
+  "ten": "Đó Chính Là Tôi!",
+  "path": "The Preservation",
+  "van menh": "Bảo Hộ",
+  "note": "BP",
+  "star": 4,
+  "rank": 5
+ },
+ {
+  "id": 21039,
+  "name": "Destiny's Threads Forewoven",
+  "ten": "Dây Thêu Dệt Vận Mệnh",
+  "path": "The Preservation",
+  "van menh": "Bảo Hộ",
+  "note": "Sảnh 2.0",
+  "star": 4,
+  "rank": 5
+ },
+ {
+  "id": 21043,
+  "name": "Buổi Hòa Nhạc Hai Người",
+  "ten": "Concert for Two",
+  "path": "The Preservation",
+  "van menh": "Bảo Hộ",
+  "note": "Event 2.1",
+  "star": 4,
+  "rank": 5
+ },
+ {
+  "id": 21009,
+  "name": "Sự Lựa Chọn Của Landau",
+  "ten": "Landau's Choice",
+  "path": "The Preservation",
+  "van menh": "Bảo Hộ",
+  "note": "Landau",
+  "star": 4,
+  "rank": 5
+ },
+ {
+  "id": 21000,
+  "name": "Post-Op Conversation",
+  "ten": "Buổi Trò Chuyện Hậu Phẫu",
+  "path": "The Abundance",
+  "van menh": "Trù Phú",
+  "note": "Hậu Phẫu, Natasha",
+  "star": 4,
+  "rank": 5
+ },
+ {
+  "id": 21007,
+  "name": "Shared Feeling",
+  "ten": "Cùng Một Tâm Trạng",
+  "path": "The Abundance",
+  "van menh": "Trù Phú",
+  "note": "Tâm Trạng",
+  "star": 4,
+  "rank": 5
+ },
+ {
+  "id": 21028,
+  "name": "Warmth Shortens Cold Nights",
+  "ten": "Đêm Ấm Sẽ Chóng Qua",
+  "path": "The Abundance",
+  "van menh": "Trù Phú",
+  "note": "BP, Đêm Ấm",
+  "star": 4,
+  "rank": 5
+ },
+ {
+  "id": 21035,
+  "name": "What Is Real?",
+  "ten": "Đâu Là Thật?",
+  "path": "The Abundance",
+  "van menh": "Trù Phú",
+  "note": "Hình Galagher",
+  "star": 4,
+  "rank": 5
+ },
+ {
+  "id": 21014,
+  "name": "Perfect Timing",
+  "ten": "Vừa Đúng Lúc",
+  "path": "The Abundance",
+  "van menh": "Trù Phú",
+  "note": "Hình Luocha",
+  "star": 4,
+  "rank": 5
+ },
+ {
+  "id": 21004,
+  "name": "Memories of the Past",
+  "ten": "Dáng Hình Trong Ký Ức",
+  "path": "The Harmony",
+  "van menh": "Hòa Hợp",
+  "note": "Dáng Hình",
+  "star": 4,
+  "rank": 5
+ },
+ {
+  "id": 21018,
+  "name": "Dance! Dance! Dance!",
+  "ten": "Múa! Múa! Múa!",
+  "path": "The Harmony",
+  "van menh": "Hòa Hợp",
+  "note": "Múa",
+  "star": 4,
+  "rank": 5
+ },
+ {
+  "id": 21032,
+  "name": "Carve the Moon, Weave the Clouds",
+  "ten": "Khắc Lên Ánh Trăng",
+  "path": "The Harmony",
+  "van menh": "Hòa Hợp",
+  "note": "BP, Ánh Trăng",
+  "star": 4,
+  "rank": 5
+ },
+ {
+  "id": 21011,
+  "name": "Planetary Rendezvous",
+  "ten": "Điểm Hẹn Hành Tinh",
+  "path": "The Harmony",
+  "van menh": "Hòa Hợp",
+  "note": "Điểm Hẹn",
+  "star": 4,
+  "rank": 5
+ },
+ {
+  "id": 21025,
+  "name": "Past and Future",
+  "ten": "Quá Khứ Tương Lai",
+  "path": "The Harmony",
+  "van menh": "Hòa Hợp",
+  "note": "Quá Khứ Tương Lai",
+  "star": 4,
+  "rank": 5
+ },
+ {
+  "id": 21001,
+  "name": "Good Night and Sleep Well",
+  "ten": "Chúc Ngủ Ngon",
+  "path": "The Nihility",
+  "van menh": "Hư Vô",
+  "note": "Chúc Ngủ Ngon",
+  "star": 4,
+  "rank": 5
+ },
+ {
+  "id": 21008,
+  "name": "Eyes of the Prey",
+  "ten": "Tầm Mắt Của Con Mồi",
+  "path": "The Nihility",
+  "van menh": "Hư Vô",
+  "note": "Tầm Mắt",
+  "star": 4,
+  "rank": 5
+ },
+ {
+  "id": 21022,
+  "name": "Fermata",
+  "ten": "Ký Hiệu Kéo Dài",
+  "path": "The Nihility",
+  "van menh": "Hư Vô",
+  "note": "Ký Hiệu",
+  "star": 4,
+  "rank": 5
+ },
+ {
+  "id": 21029,
+  "name": "We Will Meet Again",
+  "ten": "Hẹn Gặp Lại",
+  "path": "The Nihility",
+  "van menh": "Hư Vô",
+  "note": "BP",
+  "star": 4,
+  "rank": 5
+ },
+ {
+  "id": 21041,
+  "name": "It's Showtime",
+  "ten": "Vai Diễn Bắt Đầu",
+  "path": "The Nihility",
+  "van menh": "Hư Vô",
+  "note": "Sảnh 2.0",
+  "star": 4,
+  "rank": 5
+ },
+ {
+  "id": 21012,
+  "name": "A Secret Vow",
+  "ten": "Lời Thề Bí Mật",
+  "path": "The Destruction",
+  "van menh": "Hủy Diệt",
+  "note": "Arlan",
+  "star": 4,
+  "rank": 5
+ },
+ {
+  "id": 21019,
+  "name": "Under the Blue Sky",
+  "ten": "Dưới Bầu Trời Xanh",
+  "path": "The Destruction",
+  "van menh": "Hủy Diệt",
+  "note": "Dười Bầu Trời",
+  "star": 4,
+  "rank": 5
+ },
+ {
+  "id": 21038,
+  "name": "Flames Afar",
+  "ten": "Ở Nơi Xa Ngọn Lửa",
+  "path": "The Destruction",
+  "van menh": "Hủy Diệt",
+  "note": "Sam",
+  "star": 4,
+  "rank": 5
+ },
+ {
+  "id": 21042,
+  "name": "Indelible Promise",
+  "ten": "Ước Hẹn Khắc Ghi",
+  "path": "The Destruction",
+  "van menh": "Hủy Diệt",
+  "note": "Misha",
+  "star": 4,
+  "rank": 5
  }
 ]

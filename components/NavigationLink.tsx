@@ -35,7 +35,7 @@ export default function NavigationLink<Pathname extends AppPathnames>({
     <Link
       aria-current={isActive ? 'page' : undefined}
       className={clsx(
-        'inline-block px-2 py-2 transition-colors text-sm',
+        'inline-block p-2 sm:p-3 transition-colors text-sm sm:text-lg',
         isActive ? 'text-gray-900' : 'text-gray-400 hover:text-gray-200'
       )}
       href={_href}

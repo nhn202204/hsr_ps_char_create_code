@@ -54,9 +54,9 @@ const CharacterStat: React.FC<Props> = ({ charObj, lightconeDatas, relicsDatas }
 
   const t = useTranslations('EquipmentPage');
 
-  const [eidolon, setEidolon] = useState<number>(charObj.E)
+  const [eidolon, setEidolon] = useState<number>(charObj.rank)
 
-  const [persitEidolon, setPersitEidolon] = useLocalStorage<number>(`${charObj.id}-eidolon`, charObj.E)
+  const [persitEidolon, setPersitEidolon] = useLocalStorage<number>(`${charObj.id}-eidolon`, charObj.rank)
 
   const [persitSteps, setPersitSteps] = useLocalStorage<StatObj>(`${charObj.id}-steps`, initialStatObj)
 
@@ -72,14 +72,6 @@ const CharacterStat: React.FC<Props> = ({ charObj, lightconeDatas, relicsDatas }
 
   const isClient = useIsClient()
 
-  const handleIncrement: StepFunc = ({ label }) => {
-    setSteps((oldStep) => ({ ...oldStep, ...{ [label]: oldStep[label] + 1 } }))
-  }
-
-  const handleDecrement: StepFunc = ({ label }) => {
-    setSteps((oldStep) => ({ ...oldStep, ...{ [label]: oldStep[label] - 1 } }))
-  }
-
   const handleStepChanged: ChangedFunc = ({ label, value }) => {
     setSteps((oldStep) => ({ ...oldStep, ...{ [label]: value } }))
   }
@@ -88,11 +80,20 @@ const CharacterStat: React.FC<Props> = ({ charObj, lightconeDatas, relicsDatas }
     setStatBonus((oldStatBonus) => ({ ...oldStatBonus, ...{ [label]: value } }))
   }
 
+  const [LCListStarFilter, setLCListStarFilter] = useState<number>(5)
+
   const [openLCList, setOpenLCList] = useState<boolean>(false)
 
-  const lightconeList = lightconeDatas.filter(lc => lc.path.includes(charObj.path))
+  let LCListInit = lightconeDatas.filter(lc => (lc.path.includes(charObj.path) && lc.star === LCListStarFilter))
 
-  const [lightcone, setLightcone] = useLocalStorage<LightconeData>(`${charObj.id}-lightcone`, () => lightconeList.find(_lc => _lc.note.includes(charObj.lc)) || lightconeList[0])
+  const [LCList, setLCList] = useState(LCListInit)
+
+  const [lightcone, setLightcone] = useLocalStorage<LightconeData>(`${charObj.id}-lightcone`, () => LCList.find(_lc => _lc.note.includes(charObj.lc)) || LCList[0])
+
+  useEffect(() => {
+    LCListInit = lightconeDatas.filter(lc => (lc.path.includes(charObj.path) && lc.star === LCListStarFilter))
+    setLCList(LCListInit)
+  }, [LCListStarFilter])
 
   const handleLCClick: MouseEventHandler<HTMLButtonElement> = (e) => {
     e.preventDefault()
@@ -100,11 +101,11 @@ const CharacterStat: React.FC<Props> = ({ charObj, lightconeDatas, relicsDatas }
   }
 
   const handlePickLC: PointerEventHandler<HTMLButtonElement> = (e) => {
-    const newLC = lightconeList.find(_lc => _lc.id.toString() === e.currentTarget.id)
+    const newLC = LCList.find(_lc => _lc.id.toString() === e.currentTarget.id)
     newLC && setLightcone(newLC)
   }
 
-  const handlePickLC_S: PointerEventHandler<HTMLButtonElement> = (e) => {
+  const handlePickLC_Rank: PointerEventHandler<HTMLButtonElement> = (e) => {
     setLightcone(old => ({ ...old, ...{ S: parseInt(e.currentTarget.id) } }))
   }
 
@@ -121,7 +122,7 @@ const CharacterStat: React.FC<Props> = ({ charObj, lightconeDatas, relicsDatas }
   const relicSet2SetList = relicSet2List.filter((value, index, self) => self.findIndex(vl => vl.code === value.code) === index)
 
   const [relicSet4HeadArm, setRelicSet4HeadArm] = useLocalStorage<RelicsData>(`${charObj.id}-relic-top`,
-    () => relicSet4List.find(_rl => _rl["ten set"].includes(charObj.set_4_top)) || relicSet4List[0])
+    () => relicSet4List.find(_rl => _rl["ten set"].includes(charObj.top)) || relicSet4List[0])
 
   const handlePickRelicSet4HeadArmList: PointerEventHandler<HTMLButtonElement> = (e) => {
     const newRL4 = relicSet4List.find(_rl => _rl.id.toString() === e.currentTarget.id)
@@ -129,7 +130,7 @@ const CharacterStat: React.FC<Props> = ({ charObj, lightconeDatas, relicsDatas }
   }
 
   const [relicSet4BodyFoot, setRelicSet4BodyFoot] = useLocalStorage<RelicsData>(`${charObj.id}-relic-bot`,
-    () => relicSet4List.find(_rl => _rl["ten set"].includes(charObj.set_4_bot)) || relicSet4List[0])
+    () => relicSet4List.find(_rl => _rl["ten set"].includes(charObj.bot)) || relicSet4List[0])
 
   const handlePickRelicSet4BodyFootList: PointerEventHandler<HTMLButtonElement> = (e) => {
     const newRL4 = relicSet4List.find(_rl => _rl.id.toString() === e.currentTarget.id)
@@ -148,7 +149,7 @@ const CharacterStat: React.FC<Props> = ({ charObj, lightconeDatas, relicsDatas }
   }
 
   const [relicSet2, setRelicSet2] = useLocalStorage<RelicsData>(`${charObj.id}-relic-mid`,
-    () => relicSet2List.find(_rl => _rl["ten set"].includes(charObj.set_2)) || relicSet2List[0])
+    () => relicSet2List.find(_rl => _rl["ten set"].includes(charObj.mid)) || relicSet2List[0])
 
   const handlePickRelicSet2List: PointerEventHandler<HTMLButtonElement> = (e) => {
     const newRL2 = relicSet2List.find(_rl => _rl.id.toString() === e.currentTarget.id)
@@ -242,7 +243,7 @@ const CharacterStat: React.FC<Props> = ({ charObj, lightconeDatas, relicsDatas }
               initStat={steps[stat]} initStatBonus={statBonus[stat]} maxStep={36}
               label={stat} id={charObj.id + stat} totalStep={totalStep}
               statBonusChanged={handleStatBonusChanged} stepChanged={handleStepChanged}
-              increment={handleIncrement} decrement={handleDecrement} />
+              />
             :
             <>
               <label className={`h-full flex items-center text-gray-900 dark:text-white col-span-2`}>{stat}</label>
@@ -323,9 +324,11 @@ const CharacterStat: React.FC<Props> = ({ charObj, lightconeDatas, relicsDatas }
                     focus:ring-blue-300 font-medium rounded-full text-sm p-2.5 text-center inline-flex items-center
                     dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
           <svg className="w-4 h-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="#FFFFFF">
-            <path strokeLinecap="round" strokeLinejoin="round" d="M19 20H5a1 1 0 0 0 0 2h14a1 1 0 0 0 0-2zM5 18h.09l4.17-.38a2 2 0 0 0 1.21-.57l9-9a1.92 1.92 0 
-                                      0 0-.07-2.71L16.66 2.6A2 2 0 0 0 14 2.53l-9 9a2 2 0 0 0-.57 1.21L4 16.91a1 1 0 0 0 .29.8A1 1 0 0 0 5 18zM15.27 4 18 6.73l-2 
-                                      1.95L13.32 6zm-8.9 8.91L12 7.32l2.7 2.7-5.6 5.6-3 .28z" />
+            <path strokeLinecap="round" strokeLinejoin="round"
+              d="M19 20H5a1 1 0 0 0 0 2h14a1 1 0 0 0 0-2zM5 18h.09l4.17-.38a2 2 0 0 0 1.21-.57l9-9a1.92 1.92 0 
+                0 0-.07-2.71L16.66 2.6A2 2 0 0 0 14 2.53l-9 9a2 2 0 0 0-.57 1.21L4 16.91a1 1 0 0 0 .29.8A1 1 0 0 0 5 18zM15.27 4 18 6.73l-2 
+                1.95L13.32 6zm-8.9 8.91L12 7.32l2.7 2.7-5.6 5.6-3 .28z"
+            />
           </svg>
         </button>
       }
@@ -366,14 +369,14 @@ const CharacterStat: React.FC<Props> = ({ charObj, lightconeDatas, relicsDatas }
 
       {openLCList &&
         <div className="w-full col-span-2 grid grid-cols-7 gap-1" >
-          <div className="w-full col-span-6" id="Lightcone">
+          <div className="w-full col-span-5" id="Lightcone">
             <Dropdown
-              className="h-[20rem] overflow-auto"
+              className="max-h-[20rem] overflow-auto"
               label={"LC: " + lightcone[`${locale === "vn" ? "ten" : "name"}`]}
               theme={{ floating: { target: "w-full" } }}
             >
-              <div className="w-full h-28" >
-                {lightconeList.map(lc => (
+              <div className="w-full" >
+                {LCList.map(lc => (
                   <Dropdown.Item className="pl-2 pb-0 pt-1" key={lc.id} id={lc.id.toString()} onPointerDown={handlePickLC}>
                     <Image src={`/lightcones/${lc.id}.webp`} alt={`LC ${locale === "vn" ? lc.ten : lc.name}`} width="30" height="30"
                       style={{ width: 'auto', height: 'auto' }}
@@ -384,15 +387,30 @@ const CharacterStat: React.FC<Props> = ({ charObj, lightconeDatas, relicsDatas }
               </div>
             </Dropdown>
           </div>
-          <div className="w-full" id="Lightcone S">
+          <div className="w-full" id="Lightcone Rank Filter">
             <Dropdown
-              className="h-[8.5rem] overflow-auto"
-              label={`S${lightcone.S || 1}`}
+              className=""
+              label={`${LCListStarFilter}*`}
               theme={{ floating: { target: "w-full" } }}
             >
-              <div className="w-full h-28" >
+              <div className="w-full" >
+                {[4, 5].map(f => (
+                  <Dropdown.Item className="pl-2 pb-0 pt-1" key={"lcrf" + f} id={f.toString()} onPointerDown={({ currentTarget }) => setLCListStarFilter(parseInt(currentTarget.id))}>
+                    <span className="pl-2">{f + " *"}</span>
+                  </Dropdown.Item>
+                ))}
+              </div>
+            </Dropdown>
+          </div>
+          <div className="w-full" id="Lightcone Rank">
+            <Dropdown
+              className="max-h-[9rem] overflow-auto"
+              label={`S${lightcone.rank || 1}`}
+              theme={{ floating: { target: "w-full" } }}
+            >
+              <div className="w-full" >
                 {[1, 2, 3, 4, 5].map(s => (
-                  <Dropdown.Item className="pl-2 pb-0 pt-1" key={"lsc" + s} id={s.toString()} onPointerDown={handlePickLC_S}>
+                  <Dropdown.Item className="pl-2 pb-0 pt-1" key={"lsc" + s} id={s.toString()} onPointerDown={handlePickLC_Rank}>
                     <span className="pl-2">{s}</span>
                   </Dropdown.Item>
                 ))}

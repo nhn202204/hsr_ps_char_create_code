@@ -8,13 +8,11 @@ export type StepFunc = ({ label, id }: { label: typeof STATS[number], id: string
 
 interface Props {
   label: typeof STATS[number], id: string, initStat: number, initStatBonus: number, totalStep: number, maxStep: number
-  decrement: StepFunc
-  increment: StepFunc
   stepChanged: ChangedFunc
   statBonusChanged: ChangedFunc
 }
 
-const InputNumberWithStepHandler: React.FC<Props> = ({ label, id, decrement, increment, stepChanged, statBonusChanged, initStat, initStatBonus, totalStep, maxStep }) => {
+const InputNumberWithStepHandler: React.FC<Props> = ({ label, id, stepChanged, statBonusChanged, initStat, initStatBonus, totalStep, maxStep }) => {
 
   const [step, setStep] = useState<number>(initStat)
 
@@ -24,7 +22,6 @@ const InputNumberWithStepHandler: React.FC<Props> = ({ label, id, decrement, inc
     e.preventDefault()
     if (totalStep < maxStep) {
       setStep(() => step + 1)
-      increment({ label, id })
     }
   }
 
@@ -32,7 +29,6 @@ const InputNumberWithStepHandler: React.FC<Props> = ({ label, id, decrement, inc
     e.preventDefault()
     if (step > 0) {
       setStep(() => step - 1)
-      decrement({ label, id })
     }
   }
 
@@ -42,10 +38,10 @@ const InputNumberWithStepHandler: React.FC<Props> = ({ label, id, decrement, inc
     if (newStep > maxStep) newStep = maxStep
     else if (newStep < 0) newStep = 0
     setStep(newStep)
-    stepChanged({ label, id, value: newStep })
   }
 
   useEffect(() => {
+    stepChanged({ label, id, value: step })
     setStatBonus(() => {
       const arr: number[] = new Array(step).fill(0)
       const newStatBonus = parseFloat(arr.reduce((acc) => (acc + STAT_UP_VALUE[label][Math.floor(Math.random() * STAT_UP_VALUE[label].length)]), 0).toFixed(1))

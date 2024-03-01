@@ -27,7 +27,7 @@ export default function RootLayout({
   const messages = useMessages();
   return (
     <html lang={locale}>
-      <body className={inter.className + "container mx-auto relative"}>
+      <body className={inter.className + " container mx-auto relative"}>
         <NextIntlClientProvider messages={messages}>
           <JotaiProvider>
             <Navigation />
@@ -35,7 +35,7 @@ export default function RootLayout({
               <ScrollToTopButton />
             </div>
             <div className="fixed bottom-1 left-6 z-50 text-[6pt] text-gray-600">
-              {`20240229.2340`}
+              {`20240301.1639`}
             </div>
             {children}
           </JotaiProvider>

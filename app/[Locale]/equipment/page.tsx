@@ -42,7 +42,7 @@ const EquipmentPage = async ({ params, searchParams }: {
           <div className="relative overflow-hidden">
             <ColorTag label={charObj.name + " - id " + charObj.id} className="absolute bottom-4 left-4" />
             <ClippedImage src={`/characters/${charObj.id}.webp`} alt={charObj.name + " image"}
-              {...{ top: charObj.top, left: charObj.left, scale: charObj.scale }} />
+              {...{ top: charObj.pos_top, left: charObj.pos_left, scale: charObj.scale }} />
           </div>
 
           <CharacterStat {...{ charObj, relicsDatas, lightconeDatas }} />

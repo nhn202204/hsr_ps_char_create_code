@@ -4,32 +4,26 @@ export type CharacterDatas = CharacterData[]
 
 export interface CharacterData {
   id: number
+  stt: number
   name: string
   path: string
   "van menh": string
   type: string
   he: string
+  start: number
+  rank: number
+  role: string
   lc: string
-  set_2: string
-  set_4_top: string
-  set_4_bot: string
-  E: number
-  S: number
-  top: number
-  left: number
+  mid: string
+  top: string
+  bot: string
+  shpere: string
+  rope: string
+  body: string
+  foot: string
+  pos_top: number
+  pos_left: number
   scale: number
-  HP: number
-  ATK: number
-  DEF: number
-  SPD: number
-  CR: number
-  CD: number
-  BREAK: number
-  HEAL: number
-  ERR: number
-  EHR: number
-  RES: number
-  "ELE DMG": number
 }
 
 export type StatObj = { [Key in typeof STATS[number]]: number } & {"ERR": number, "ELE DMG": number}
@@ -54,7 +48,8 @@ export interface LightconeData {
   path: string
   "van menh": string
   note: string
-  S: number
+  star: number
+  rank: number
 }
 
 export type RelicMainAffix = {

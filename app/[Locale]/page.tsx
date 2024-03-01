@@ -7,7 +7,7 @@ export default function Page() {
   const t = useTranslations('IndexPage');
 
   return (
-    <div className="flex flex-col w-full text-center items-center h-screen">
+    <div className="flex flex-col w-full text-center items-center">
       <h1 className="px-5 mt-2">{t('desc_1')}</h1>
       <h1 className="px-5 mt-2">{t('desc_2')}</h1>
       <h1 className="px-5 mt-2">{t('desc_3')}</h1>

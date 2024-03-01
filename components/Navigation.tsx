@@ -6,7 +6,7 @@ export default function Navigation() {
   const t = useTranslations('Navigation');
 
   return (
-    <nav className="container flex justify-between items-center text-white">
+    <nav className="flex w-full justify-between items-center text-white">
       <div>
         <NavigationLink href="/">{t('home')}</NavigationLink>
         <NavigationLink href="/characters">{t('characters')}</NavigationLink>

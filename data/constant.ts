@@ -124,4 +124,4 @@ export const RATE_BONUS_POINT_PER_STEP = {
   BREAK: 0.648,
   EHR: 0.432,
   RES: 0.432
-}
+} as const
