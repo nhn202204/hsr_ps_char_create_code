@@ -14,6 +14,10 @@ export const pathnames = {
     vn: '/equipment',
     en: '/equipment'
   },
+  '/enemy': {
+    vn: '/enemy',
+    en: '/enemy'
+  },
   '/code': {
     vn: '/code',
     en: '/code'

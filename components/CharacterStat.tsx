@@ -52,6 +52,8 @@ const CharacterStat: React.FC<Props> = ({ charObj, lightconeDatas, relicsDatas }
 
   const locale = useLocale()
 
+  const isVN = locale === 'vn'
+
   const t = useTranslations('EquipmentPage');
 
   const [eidolon, setEidolon] = useState<number>(charObj.rank)
@@ -106,7 +108,7 @@ const CharacterStat: React.FC<Props> = ({ charObj, lightconeDatas, relicsDatas }
   }
 
   const handlePickLC_Rank: PointerEventHandler<HTMLButtonElement> = (e) => {
-    setLightcone(old => ({ ...old, ...{ S: parseInt(e.currentTarget.id) } }))
+    setLightcone(old => ({ ...old, ...{ rank: parseInt(e.currentTarget.id) } }))
   }
 
   const [openRelicSet4HeadArmList, setOpenRelicSet4HeadArmList] = useState<boolean>(false)
@@ -372,16 +374,16 @@ const CharacterStat: React.FC<Props> = ({ charObj, lightconeDatas, relicsDatas }
           <div className="w-full col-span-5" id="Lightcone">
             <Dropdown
               className="max-h-[20rem] overflow-auto"
-              label={"LC: " + lightcone[`${locale === "vn" ? "ten" : "name"}`]}
+              label={"LC: " + lightcone[`${isVN ? "ten" : "name"}`]}
               theme={{ floating: { target: "w-full" } }}
             >
               <div className="w-full" >
                 {LCList.map(lc => (
                   <Dropdown.Item className="pl-2 pb-0 pt-1" key={lc.id} id={lc.id.toString()} onPointerDown={handlePickLC}>
-                    <Image src={`/lightcones/${lc.id}.webp`} alt={`LC ${locale === "vn" ? lc.ten : lc.name}`} width="40" height="40"
+                    <Image src={`/lightcones/${lc.id}.webp`} alt={`LC ${isVN ? lc.ten : lc.name}`} width="40" height="40"
                       style={{ width: 'auto', height: 'auto' }}
                     />
-                    <span className="pl-2">{locale === "vn" ? lc.ten : lc.name}</span>
+                    <span className="pl-2">{isVN ? lc.ten : lc.name}</span>
                   </Dropdown.Item>
                 ))}
               </div>
@@ -424,7 +426,7 @@ const CharacterStat: React.FC<Props> = ({ charObj, lightconeDatas, relicsDatas }
         <div className="w-full col-span-2" id={`Set4Top`}>
           <Dropdown
             className="h-[20rem] overflow-auto"
-            label={"Top: " + relicSet4HeadArm[`${locale === "vn" ? "ten set" : "set name"}`]}
+            label={"Top: " + relicSet4HeadArm[`${isVN ? "ten set" : "set name"}`]}
             theme={{ floating: { target: "w-full" } }}
           >
             {relicSet4SetList.map(rl => (
@@ -433,7 +435,7 @@ const CharacterStat: React.FC<Props> = ({ charObj, lightconeDatas, relicsDatas }
                   width="50" height="40"
                   style={{ width: 'auto', height: 'auto' }}
                 />
-                <span className="pl-2">{locale === "vn" ? rl["ten set"] : rl["set name"]}</span>
+                <span className="pl-2">{isVN ? rl["ten set"] : rl["set name"]}</span>
               </Dropdown.Item>
             ))}
           </Dropdown>
@@ -445,7 +447,7 @@ const CharacterStat: React.FC<Props> = ({ charObj, lightconeDatas, relicsDatas }
           <div className="w-full col-span-2" id={`Set2`}>
             <Dropdown
               className="h-[20rem] overflow-auto"
-              label={"Mid: " + relicSet2[`${locale === "vn" ? "ten set" : "set name"}`]}
+              label={"Mid: " + relicSet2[`${isVN ? "ten set" : "set name"}`]}
               theme={{ floating: { target: "w-full" } }}
             >
               {relicSet2SetList.map(rl => (
@@ -454,7 +456,7 @@ const CharacterStat: React.FC<Props> = ({ charObj, lightconeDatas, relicsDatas }
                     width="50" height="40"
                     style={{ width: 'auto', height: 'auto' }}
                   />
-                  <span className="pl-2">{locale === "vn" ? rl["ten set"] : rl["set name"]}</span>
+                  <span className="pl-2">{isVN ? rl["ten set"] : rl["set name"]}</span>
                 </Dropdown.Item>
               ))}
             </Dropdown>
@@ -485,7 +487,7 @@ const CharacterStat: React.FC<Props> = ({ charObj, lightconeDatas, relicsDatas }
           <div className="w-full col-span-2" id={`Set4Bot`}>
             <Dropdown
               className="h-[20rem] overflow-auto"
-              label={"Bot: " + relicSet4BodyFoot[`${locale === "vn" ? "ten set" : "set name"}`]}
+              label={"Bot: " + relicSet4BodyFoot[`${isVN ? "ten set" : "set name"}`]}
               theme={{ floating: { target: "w-full" } }}
             >
               {relicSet4SetList.map(rl => (
@@ -494,13 +496,13 @@ const CharacterStat: React.FC<Props> = ({ charObj, lightconeDatas, relicsDatas }
                     width="50" height="40"
                     style={{ width: 'auto', height: 'auto' }}
                   />
-                  <span className="pl-2">{locale === "vn" ? rl["ten set"] : rl["set name"]}</span>
+                  <span className="pl-2">{isVN ? rl["ten set"] : rl["set name"]}</span>
                 </Dropdown.Item>
               ))}
             </Dropdown>
           </div>
           <div className="w-full" id={`Body`}>
-            <Dropdown label={"Áo: " + mainAffixPicked.Body.affix} theme={{ floating: { target: "w-full" } }}>
+            <Dropdown label={`${isVN ? "Áo:" : "Body:"} ${mainAffixPicked.Body.affix}`} theme={{ floating: { target: "w-full" } }}>
               {RELIC_MAIN_AFFIX_ID.Body.map(affixs => (
                 <Dropdown.Item key={affixs.id} id={"Body-" + affixs.affix} onPointerDown={handlePickMainAffix}>
                   {affixs.affix}
@@ -509,7 +511,7 @@ const CharacterStat: React.FC<Props> = ({ charObj, lightconeDatas, relicsDatas }
             </Dropdown>
           </div>
           <div className="w-full" id={`Foot`}>
-            <Dropdown label={"Giày: " + mainAffixPicked.Foot.affix} theme={{ floating: { target: "w-full" } }}>
+            <Dropdown label={`${isVN ? "Giày:" : "Foot:"} ${mainAffixPicked.Foot.affix}`} theme={{ floating: { target: "w-full" } }}>
               {RELIC_MAIN_AFFIX_ID.Foot.map(affixs => (
                 <Dropdown.Item key={affixs.id} id={"Foot-" + affixs.affix} onPointerDown={handlePickMainAffix}>
                   {affixs.affix}

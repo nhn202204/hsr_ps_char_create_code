@@ -5,6 +5,7 @@
     "desc_2": "Tất cả chỉ số HP ATK DEF đều là %",
     "desc_3": "Hiện mình chưa có thời gian nhập liệu các chỉ số Base char, nón. Sẽ từ từ bổ sung phần này.",
     "desc_4": "Tất cả dữ liệu sẽ lưu trên máy của bạn, có thể sẽ mất do các hoạt động của bạn và dữ liệu mình không lưu ở đâu khác.",
+    "desc_41": "App sử dụng localStorage Api để lưu State giữa các trang, Javascipt để vận hành.",
     "desc_5": "Các bước bao gồm: Chọn Char -> Cộng stat, chọn Di vật, nón, tinh hồn -> Tạo code -> Dán đè code cũ",
     "desc_6": "Tìm đến đường dẫn file dưới đây:",
     "desc_7": "Tìm file có tên: BattleReqGroup.cs, mở ra bằng Notepad",
@@ -20,6 +21,7 @@
     "home": "Home",
     "characters": "NVật",
     "equipment": "Tbị",
+    "enemy": "Quái",
     "code": "Code"
   },
   "Footer": {
@@ -42,7 +44,25 @@
     "Btn-cancel": "Hủy",
     "description_top": "Top: Đầu + Tay",
     "description_mid": "Mid: Cầu + Dây",
-    "description_bot": "Bot: Áo + Giày"
+    "description_bot": "Bot: Áo + Giày",
+    "alert_char": "Bạn chưa chọn Nhân Vật, Back lại hoặc Bấm link dưới",
+    "Btn-alert_char": "Về trang chọn Nhân Vật"
+  },
+  "CharacterPage": {
+    "Btn-to-equip-page": "Tổng điểm"
+  },
+  "EnemyPage": {
+    "number-of-wave": "Số wave quái",
+    "add-wave": "Tạo wave quái",
+    "name-wave": "Đặt tên",
+    "add-enemy": "Thêm quái",
+    "btn-edit": "Sửa",
+    "btn-save": "Lưu",
+    "btn-cancel": "Hủy",
+    "btn-remove": "Xóa",
+    "notice": "Lưu ý: Nếu tạo wave quái có Boss tuần, trận đấu sẽ bị đứng (freeze) khi diệt boss tuần",
+    "notice-enemy-id": "Tìm id quái trên HomDGCat Wiki",
+    "notice-careful-add-enemy-id": "Nhập ID chính xác, nếu không có thể crash khi vào trận"
   },
   "StickyButton": {
     "main-page": "Đến trang chọn nhân vật",

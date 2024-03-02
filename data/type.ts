@@ -60,3 +60,7 @@ export type RelicMainAffix = {
 }
 
 export type ValidMainAffix = "ATK" | "HP" | "SPD" | "DEF" | "CR" | "EHR" | "CD" | "BREAK" | "ERR"
+
+export type EnemyWaveType = { id: number, mobIds: number[], level: number }
+
+export type EnemyWavesType = EnemyWaveType[]

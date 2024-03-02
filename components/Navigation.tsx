@@ -7,12 +7,11 @@ export default function Navigation() {
 
   return (
     <nav className="flex w-full justify-between items-center text-white">
-      <div>
-        <NavigationLink href="/">{t('home')}</NavigationLink>
-        <NavigationLink href="/characters">{t('characters')}</NavigationLink>
-        <NavigationLink href="/equipment">{t('equipment')}</NavigationLink>
-        <NavigationLink href="/code">{t('code')}</NavigationLink>
-      </div>
+      <NavigationLink href="/">{t('home')}</NavigationLink>
+      <NavigationLink href="/characters">{t('characters')}</NavigationLink>
+      <NavigationLink href="/equipment">{t('equipment')}</NavigationLink>
+      <NavigationLink href="/enemy">{t('enemy')}</NavigationLink>
+      <NavigationLink href="/code">{t('code')}</NavigationLink>
       <LocaleSwitcher />
     </nav>
   );

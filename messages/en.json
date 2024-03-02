@@ -5,12 +5,13 @@
     "desc_2": "All HP ATK DEF is % not flat at all.",
     "desc_3": "I currently do not have time to input the Base char and Lightcone stats data, will gradually add this section!.",
     "desc_4": "All data will be saved on your machine, may be lost due to your activities and I do not save the data anywhere else!.",
-    "desc_5": "The steps include: Select Char -> Add stats, select Artifacts, hat, soul -> Generate code -> Paste over old code",
+    "desc_41": "Javascipt and localStorage Api must been enable to page work",
+    "desc_5": "Follow: Select Character -> Add stats, select Relics, Lightcone, Eidolon -> Generate code -> Replace whole old code",
     "desc_6": "Navigate to the file path below:",
     "desc_7": "Find the file named: BattleReqGroup.cs, open it with Notepad",
     "desc_8": "Ctrl+A -> Ctrl+V -> Ctrl+S --> dotnet build",
-    "desc_9": "Let's start below! Enjoy",
-    "Btn_to_pick_char": "Translate Vietnamese to English by ClaudeAI"
+    "desc_9": "Translate Vietnamese to English by ClaudeAI",
+    "Btn_to_pick_char": "To Character select page"
   },
   "NotFoundPage": {
     "title": "Page Not Found",
@@ -20,6 +21,7 @@
     "home": "Home",
     "characters": "Char",
     "equipment": "Equip",
+    "enemy": "Enemy",
     "code": "Code"
   },
   "Footer": {
@@ -42,7 +44,25 @@
     "Btn-cancel": "Cancel",
     "description_top": "Top: Head + Arm",
     "description_mid": "Mid: Sphere + Rope",
-    "description_bot": "Bot: Body + Foot"
+    "description_bot": "Bot: Body + Foot",
+    "alert_char": "You did not pick any Character yet, Please Back or use Button below",
+    "Btn-alert_char": "Back to Character Page"
+  },
+  "CharacterPage": {
+    "Btn-to-equip-page": "Tổng điểm"
+  },
+  "EnemyPage": {
+    "number-of-wave": "Number of waves",
+    "add-wave": "Add Enemy wave",
+    "name-wave": "Wave's name",
+    "add-enemy": "Add Enemy",
+    "btn-edit": "Edit",
+    "btn-save": "Save",
+    "btn-cancel": "Cancel",
+    "btn-remove": "Remove",
+    "notice": "Attention: If you make a wave with weekly boss it end (freeze) the fight once you beat it",
+    "notice-enemy-id": "Find Enemy Id on HomDGCat Wiki",
+    "notice-careful-add-enemy-id": "Please Input enemy id careful and exactly, if not maybe battle will crash"
   },
   "StickyButton": {
     "main-page": "To Character select page",

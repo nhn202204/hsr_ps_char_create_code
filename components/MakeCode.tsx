@@ -1,6 +1,6 @@
 "use client"
 
-import { CharacterData, CharacterDatas, LightconeData, RelicsData, StatObj } from "@/data/type"
+import { CharacterData, CharacterDatas, EnemyWavesType, LightconeData, RelicsData, StatObj } from "@/data/type"
 import { FC } from "react"
 import { useIsClient } from "usehooks-ts"
 
@@ -36,7 +36,7 @@ const MakeCode: FC = () => {
 
   if (!isClient) return <p>Loading...</p>
 
-  const code = composeFulCode(isVN)
+  const code = composeFullCode(isVN)
   // const code = fullComposeStringCodeRelic(isVN)
 
   return (
@@ -48,10 +48,37 @@ const MakeCode: FC = () => {
 
 export default MakeCode
 
-const composeFulCode = (isVN: boolean) => {
+const composeEnemyCode = () => {
+
+  const ewPersit = localStorage.getItem(`enemy-waves`)
+  if (ewPersit === null) return "Data Enemy is missing"
+  const ew = JSON.parse(ewPersit) as EnemyWavesType
+
+  const mobwaves = ew.map(w => (`{ ${w.id}, new List<uint> { ${w.mobIds.join(', ')} } },`)).join(`
+                  `)
+  // console.log("🚀 ~ mobwaves ~ mobwaves:", mobwaves)
+
+  const mobLvl = ew.map(w => (`{${w.id},${w.level}}`)).join(`,`)
+  // console.log("🚀 ~ mobLvl ~ mobLvl:", mobLvl)
 
   const code =
-`using FreeSR.Gateserver.Manager.Handlers.Core;
+    `    Dictionary<uint, List<uint>> monsterIds = new Dictionary<uint, List<uint>>
+              {
+                  ${mobwaves}
+              };
+
+            Dictionary<uint, uint> monsterLevels = new Dictionary<uint, uint>
+              {
+                  ${mobLvl}
+              };`
+
+  return code
+}
+
+const composeFullCode = (isVN: boolean) => {
+
+  const code =
+    `using FreeSR.Gateserver.Manager.Handlers.Core;
 using static FreeSR.Gateserver.Manager.Handlers.LineupReqGroup;
 using FreeSR.Gateserver.Network;
 using FreeSR.Proto;
@@ -163,17 +190,7 @@ namespace FreeSR.Gateserver.Manager.Handlers
 		{
 			var request = data as StartCocoonStageCsReq;
 
-			Dictionary<uint, List<uint>> monsterIds = new Dictionary<uint, List<uint>>
-						{
-								{ 1, new List<uint> { 3013010, 3012010, 3013010, 3001010 } },
-								{ 2, new List<uint> { 8034010 } },
-								{ 3, new List<uint> { 3014022 } },
-						};
-
-			Dictionary<uint, uint> monsterLevels = new Dictionary<uint, uint>
-						{
-								{1,70},{2,70},{3,60}
-						};
+        ${composeEnemyCode()}
 
 			//basic
 			var battleInfo = new SceneBattleInfo
@@ -376,7 +393,7 @@ const composeStringCodeRelic = ({ char: { id, name }, isVN }: ComposeStringCodeR
     `{
                       new RelicAffix {
                       AffixId = ${SUB_AFFIX_ID.HP},  // HP%
-                      Step = ${Math.ceil(subAffixBonus.HP/RATE_BONUS_POINT_PER_STEP.HP)}
+                      Step = ${Math.ceil(subAffixBonus.HP / RATE_BONUS_POINT_PER_STEP.HP)}
                       }
                     },`
 
@@ -384,7 +401,7 @@ const composeStringCodeRelic = ({ char: { id, name }, isVN }: ComposeStringCodeR
     `{
                       new RelicAffix {
                       AffixId = ${SUB_AFFIX_ID.ATK},  // ATK%
-                      Step = ${Math.ceil(subAffixBonus.ATK/RATE_BONUS_POINT_PER_STEP.ATK)}
+                      Step = ${Math.ceil(subAffixBonus.ATK / RATE_BONUS_POINT_PER_STEP.ATK)}
                       }
                     },`
 
@@ -392,7 +409,7 @@ const composeStringCodeRelic = ({ char: { id, name }, isVN }: ComposeStringCodeR
     `{
                       new RelicAffix {
                       AffixId = ${SUB_AFFIX_ID.DEF},  // DEF%
-                      Step = ${Math.ceil(subAffixBonus.DEF/RATE_BONUS_POINT_PER_STEP.DEF)}
+                      Step = ${Math.ceil(subAffixBonus.DEF / RATE_BONUS_POINT_PER_STEP.DEF)}
                       }
                     },`
 
@@ -400,7 +417,7 @@ const composeStringCodeRelic = ({ char: { id, name }, isVN }: ComposeStringCodeR
     `{
                       new RelicAffix {
                       AffixId = ${SUB_AFFIX_ID.SPD},  // SPD
-                      Step = ${Math.ceil(subAffixBonus.SPD/RATE_BONUS_POINT_PER_STEP.SPD)}
+                      Step = ${Math.ceil(subAffixBonus.SPD / RATE_BONUS_POINT_PER_STEP.SPD)}
                       }
                     },`
 
@@ -408,7 +425,7 @@ const composeStringCodeRelic = ({ char: { id, name }, isVN }: ComposeStringCodeR
     `{
                       new RelicAffix {
                       AffixId = ${SUB_AFFIX_ID.CR},  // CR
-                      Step = ${Math.ceil(subAffixBonus.CR/RATE_BONUS_POINT_PER_STEP.CR)}
+                      Step = ${Math.ceil(subAffixBonus.CR / RATE_BONUS_POINT_PER_STEP.CR)}
                       }
                     },`
 
@@ -416,7 +433,7 @@ const composeStringCodeRelic = ({ char: { id, name }, isVN }: ComposeStringCodeR
     `{
                       new RelicAffix {
                       AffixId = ${SUB_AFFIX_ID.CD},  // CD
-                      Step = ${Math.ceil(subAffixBonus.CD/RATE_BONUS_POINT_PER_STEP.CD)}
+                      Step = ${Math.ceil(subAffixBonus.CD / RATE_BONUS_POINT_PER_STEP.CD)}
                       }
                     },`
 
@@ -424,7 +441,7 @@ const composeStringCodeRelic = ({ char: { id, name }, isVN }: ComposeStringCodeR
     `{
                       new RelicAffix {
                       AffixId = ${SUB_AFFIX_ID.EHR},  // EHR
-                      Step = ${Math.ceil(subAffixBonus.EHR/RATE_BONUS_POINT_PER_STEP.EHR)}
+                      Step = ${Math.ceil(subAffixBonus.EHR / RATE_BONUS_POINT_PER_STEP.EHR)}
                       }
                     },`
 
@@ -432,7 +449,7 @@ const composeStringCodeRelic = ({ char: { id, name }, isVN }: ComposeStringCodeR
     `{
                       new RelicAffix {
                       AffixId = ${SUB_AFFIX_ID.BREAK},  // BREAK
-                      Step = ${Math.ceil(subAffixBonus.BREAK/RATE_BONUS_POINT_PER_STEP.BREAK)}
+                      Step = ${Math.ceil(subAffixBonus.BREAK / RATE_BONUS_POINT_PER_STEP.BREAK)}
                       }
                     },`
 
@@ -440,7 +457,7 @@ const composeStringCodeRelic = ({ char: { id, name }, isVN }: ComposeStringCodeR
     `{
                       new RelicAffix {
                       AffixId = ${SUB_AFFIX_ID.RES},  // RES
-                      Step = ${Math.ceil(subAffixBonus.RES/RATE_BONUS_POINT_PER_STEP.RES)}
+                      Step = ${Math.ceil(subAffixBonus.RES / RATE_BONUS_POINT_PER_STEP.RES)}
                       }
                     }`
 
@@ -455,7 +472,7 @@ const composeStringCodeRelic = ({ char: { id, name }, isVN }: ComposeStringCodeR
             var head_${id} = new BattleRelic
               {
                   Id = ${relicTop.code + 1},  // ${isVN ? relicTop["ten set"] : relicTop["set name"]}
-                  Level = 15,
+                  Level = 999,
                   MainAffixId = 1${subAffixCode_List}
               };
 

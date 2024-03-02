@@ -35,7 +35,7 @@ export default function RootLayout({
               <ScrollToTopButton />
             </div>
             <div className="fixed bottom-1 left-6 z-50 text-[6pt] text-gray-600">
-              {`20240301.2231`}
+              {`20240302.2133`}
             </div>
             {children}
           </JotaiProvider>
